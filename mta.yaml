@@ -1,0 +1,17 @@
+ID: sandpit
+_schema-version: '2.0'
+description: Sandpit area
+version: 0.0.1
+
+modules:
+ - name: Rule_Set
+   type: hdb
+   path: core_db/Ruleset
+   requires:
+    - name: hdi_Rule_Set
+
+resources:
+ - name: hdi_Rule_Set
+   properties:
+      hdi-container-name: ${service-name}
+   type: com.sap.xs.hdi-container

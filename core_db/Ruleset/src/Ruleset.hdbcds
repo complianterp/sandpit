@@ -1,0 +1,202 @@
+namespace sandpit.Rule_Set;
+
+context Ruleset {
+    @OData.publish : true
+    /*@@layout{"layoutInfo":{"x":347,"y":-80.5}}*/
+    entity MD_MODULE {
+        key MODULE_ID   : String(10) not null;
+            MODULE_NAME : String(60) not null;
+    };
+    
+    /*@@layout{"layoutInfo":{"x":626,"y":-80.5}}*/
+    entity MD_SUB_MODULE {
+        key SUB_MODULE_ID   : String(10) not null;
+            SUB_MODULE_NAME : String(60) not null;
+    };
+
+    /*@@layout{"layoutInfo":{"x":863,"y":267.5}}*/
+    entity MD_PROCESSES {
+        key PROCESS_ID   : String(10) not null;
+            PROCESS_NAME : String(60) not null;
+    };
+
+    /*@@layout{"layoutInfo":{"x":863,"y":362.5}}*/
+    entity MD_SUB_PROCESSES {
+        key SUB_PROCESS_ID   : String(10) not null;
+            SUB_PROCESS_NAME : String(60) not null;
+    };
+
+    /*@@layout{"layoutInfo":{"x":1155,"y":-120.5}}*/
+    entity S_TSTC {
+        key TCODE : String(20) not null;
+            PGMNA : String(40);
+            DYPNO : Integer;
+            MENUE : String(5);
+            CINFO : Integer;
+            ARBGB : String(20);
+            TTEXT : String(60);
+    };
+
+    /*@@layout{"layoutInfo":{"x":1078,"y":573.5}}*/
+    entity S_TOBJT {
+            LANGU  : String(10) not null;
+        key OBJECT : String(10) not null;
+            TTEXT  : String(60);
+    };
+
+    /*@@layout{"layoutInfo":{"x":498,"y":753.5}}*/
+    entity CUSTOMERS {
+        key CUST_ID      : String(10) not null;
+            COMPANY_NAME : String(60) not null;
+    };
+
+    /*@@layout{"layoutInfo":{"x":821,"y":743.5}}*/
+    entity LOGICAL_SYSTEMS {
+        key SYS_ID    : String(60) not null;
+        key CLIENT_ID : String(10) not null;
+            CUST_ID   : association[1..1] to CUSTOMERS {CUST_ID};
+    };
+
+    
+    /*@@layout{"layoutInfo":{"x":491,"y":475.5}}*/
+    entity USERS {
+        key USER_ID      : String(60) not null;
+            FIRST_NAME   : String(60) not null;
+            LAST_NAME    : String(60) not null;
+            EMAIL        : String(60) not null;
+            START_DATE   : LocalDate;
+            END_DATE     : LocalDate;
+            TIME_ZONE    : String(10);
+            ADMIN_ACCESS : Boolean;
+            CUSTOMER     : association[1..1] to CUSTOMERS {CUST_ID};
+    };    
+
+    /*@@layout{"layoutInfo":{"x":33,"y":9.5}}*/
+    entity RULE_SET {
+        key RS_ID              : String(10) not null;
+            RS_NAME            : String(60) not null;
+            DESCRIPTION        : LargeString;
+            ACTIVE             : Boolean;
+            GLOBAL_OR_CUSTOMER : String(60) not null;
+            CUSTOMER           : association[1..1] to CUSTOMERS {CUST_ID};
+            OWNER              : association[1..1] to USERS {USER_ID};
+    };
+    
+    /*@@layout{"layoutInfo":{"x":484,"y":207.5}}*/
+    entity ACTIVITY {
+        key ACT_ID      : String(10) not null;
+            ACT_NAME    : String(60) not null;
+            RS_ID       : association[1..1] to RULE_SET {RS_ID};
+            ACTIVE      : Boolean    not null;
+            SEVERITY    : String(60) not null;
+            MODULE      : association[1..1] to MD_MODULE {MODULE_ID};
+            SUB_MODULE  : association[1..1] to MD_SUB_MODULE {SUB_MODULE_ID};
+            OWNER       : association[1..1] to USERS {USER_ID};
+            PROCESS     : association[1..1] to MD_PROCESSES {PROCESS_ID};
+            SUB_PROCESS : association[1..1] to MD_SUB_PROCESSES {SUB_PROCESS_ID};
+    };
+
+    /*@@layout{"layoutInfo":{"x":826,"y":76.5}}*/
+    entity ACT_TCODE {
+        key ACT_ID       : association[*, 1..1] to ACTIVITY { ACT_ID };
+            ACTIVE       : Boolean not null;
+        key TCODE        : association[*, 1..1] to S_TSTC {TCODE};
+        key GROUP_NUMBER : Boolean not null;
+    };
+
+    /*@@layout{"layoutInfo":{"x":800,"y":538.5}}*/
+    entity ACT_AUTH {
+        key ACT_ID         : association[1..1] to ACTIVITY { ACT_ID };
+        key GROUP_NUMBER   : Integer    not null;
+        key OBJECT         : association[1..1] to S_TOBJT {OBJECT};
+            AUTH_FIELD     : String(20) not null;
+            AUTH_VALUES    : String(20) not null;
+            LOGIC_OPERATOR : Integer    not null;
+            ACTIVE         : Boolean;
+    };
+
+
+    /*@@layout{"layoutInfo":{"x":-354,"y":172.5}}*/
+    entity TESTS {
+        key TST_ID      : String(10) not null;
+            TST_NAME    : String(60) not null;
+            RS_ID       : association[1..1] to RULE_SET { RS_ID };
+        	/*SEVERITY    : String(60) not null; Removed*/
+			/*SCAN_LOGIC  : Integer    not null; Removed*/
+        	ACTIVE          : Boolean;
+            DESCRIPTION : LargeString;
+            OWNER       : association[1..1] to USERS { USER_ID };
+    };
+
+    /*@@layout{"layoutInfo":{"x":75,"y":240.5}}*/
+    entity TEST_ACTIVITY {
+        key TST_ID : association[1..1] to TESTS {TST_ID};
+        key ACT_ID : association[1..1] to ACTIVITY {ACT_ID};
+    };
+
+    /*@@layout{"layoutInfo":{"x":220,"y":-257.5}}*/
+    entity RISKS {
+        key RISK_ID     : String(10) not null;
+            RISK_NAME   : String(60) not null;
+            RISK_RATING : String(60) /*not null*/; /*add back after values confirmed*/ /*Is this required?*/
+            RISK_CAT    : String(60) /*not null*/; /*add back after values confirmed*/ /*Is this required?*/
+            RULE_SET    : association[1..1] to Ruleset.RULE_SET { RS_ID };
+    };
+
+    /*@@layout{"layoutInfo":{"x":-512,"y":-200.5}}*/
+    entity MD_RISK_RATING {
+        key RISK_RATING_ID              : String(10) not null;
+            CONSEQUENCE                 : Integer    not null;
+            LIKELIHOOD                  : Integer    not null;
+            C_X_L                       : Integer    = CONSEQUENCE * LIKELIHOOD;
+            CL                          : Integer;
+            DEFAULT_MATRIX_RATING       : String(20);
+            RANGE                       : Integer;
+            DEFAULT_RISK_CLASSIFICATION : String(10);
+            DEFAULT_RISK_RANGE          : String(20);
+    };
+
+    /*@@layout{"layoutInfo":{"x":-159,"y":-385.5}}*/
+    entity RISK_TEST {
+        key RISK                         : association[1..1] to RISKS {RISK_ID};
+        key TEST                         : association[1..1] to TESTS {TST_ID};
+        key RISK_RATING                  : association[1..1] to MD_RISK_RATING {RISK_RATING_ID};
+            ANNUALISED_LOSS_EXPECTANCY   : Decimal(15,2);
+            ESTIMATED_ANNUALISED_LOSS    : Decimal(15,2);
+            ALE_PROBABILITY              : Decimal(15,10);
+            BEST_CASE_RISK_EVENT_IMPACT  : Decimal(15,2);
+            EXPECTED_RISK_EVENT_IMPACT   : Decimal(15,2);
+            WORST_CASE_RISK_EVENT_IMPACT : Decimal(15,2);
+            BEST_CASE_RISK_EVENT_FREQ    : Decimal(15,2);
+            EXPECTED_RISK_EVENT_FREQ     : Decimal(15,2);
+            WORST_CASE_RISK_EVENT_FREQ   : Decimal(15,2);
+            MONTE_CARLO_IMPACT           : Decimal(15,2);
+            MONTE_CARLO_FREQ             : Decimal(15,2);
+            DETERMINISTIC                : Decimal(15,2);
+            MONTE_CARLO_OUTPUT           : Decimal(15,2);
+    };
+
+    /*@@layout{"layoutInfo":{"x":-67,"y":419.5}}*/
+    entity BUSINESS_CONTROL {
+        key BC_ID       : String(10) not null;
+        key RS_ID       : association[1..1] to RULE_SET { RS_ID };
+            BC_NAME     : String(60) not null;
+            ACTIVE      : Boolean;
+            /*SEVERITY    : String(20) not null;*/ /*Removed*/
+            TYPE        : String(60) not null;
+            PROGRAM     : LargeString;
+            FREQUENCY   : String(60) not null;
+            OWNER       : association[1..1] to USERS { USER_ID };
+            PROCESS     : association[1..1] to MD_PROCESSES {PROCESS_ID};
+            SUB_PROCESS	: association[1..1] to MD_SUB_PROCESSES {SUB_PROCESS_ID};
+            DESCRIPTION : LargeString;
+            VARIANT     : String(60);
+            MONITOR     : association[1..1] to USERS { USER_ID };
+    };
+
+    /*@@layout{"layoutInfo":{"x":-347,"y":428.5}}*/
+    entity TESTS_BUSINESS_CONTROL {
+        key TST_ID : association[1..1] to TESTS { TST_ID };
+        key BC_ID  : association[1..1] to BUSINESS_CONTROL { BC_ID };
+    };
+};

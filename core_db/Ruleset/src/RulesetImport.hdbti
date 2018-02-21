@@ -1,0 +1,179 @@
+import = [
+{
+hdbtable = "sandpit.code_db.Ruleset.src::Ruleset.MD_MODULE";
+file = "sandpit.code_db.Ruleset.src.DATA:01_MD_MODULE.csv";
+header = true;
+delimField = ",";
+}
+];
+
+import = [
+{
+hdbtable = "sandpit.code_db.Ruleset.src::Ruleset.MD_SUB_MODULE";
+file = "sandpit.code_db.Ruleset.src.DATA:02_MD_SUB_MODULE.csv";
+header = true;
+delimField = ",";
+}
+];
+
+import = [
+{
+hdbtable = "sandpit.code_db.Ruleset.src::Ruleset.MD_PROCESSES";
+file = "sandpit.code_db.Ruleset.src.DATA:03_MD_PROCESSES.csv";
+header = true;
+delimField = ",";
+}
+];
+
+import = [
+{
+hdbtable = "sandpit.code_db.Ruleset.src::Ruleset.MD_SUB_PROCESSES";
+file = "sandpit.code_db.Ruleset.src.DATA:04_MD_SUB_PROCESSES.csv";
+header = true;
+delimField = ",";
+}
+];
+
+import = [
+{
+hdbtable = "sandpit.code_db.Ruleset.src::Ruleset.S_TSTC";
+file = "sandpit.code_db.Ruleset.src.DATA:05_S_TSTC.csv";
+header = true;
+delimField = ",";
+}
+];
+
+import = [
+{
+hdbtable = "sandpit.code_db.Ruleset.src::Ruleset.S_TOBJT";
+file = "sandpit.code_db.Ruleset.src.DATA:06_S_TOBJT.csv";
+header = true;
+delimField = ",";
+}
+];
+
+import = [
+{
+hdbtable = "sandpit.code_db.Ruleset.src::Ruleset.CUSTOMERS";
+file = "sandpit.code_db.Ruleset.src.DATA:07_CUSTOMERS.csv";
+header = true;
+delimField = ",";
+}
+];
+
+import = [
+{
+hdbtable = "sandpit.code_db.Ruleset.src::Ruleset.LOGICAL_SYSTEMS";
+file = "sandpit.code_db.Ruleset.src.DATA:08_LOGICAL_SYSTEMS.csv";
+header = true;
+delimField = ",";
+}
+];
+
+import = [
+{
+hdbtable = "sandpit.code_db.Ruleset.src::Ruleset.USERS";
+file = "sandpit.code_db.Ruleset.src.DATA:09_USERS.csv";
+header = true;
+delimField = ",";
+}
+];
+
+import = [
+{
+hdbtable = "sandpit.code_db.Ruleset.src::Ruleset.RULE_SET";
+file = "sandpit.code_db.Ruleset.src.DATA:10_RULE_SET.csv";
+header = true;
+delimField = ",";
+}
+];
+
+import = [
+{
+hdbtable = "sandpit.code_db.Ruleset.src::Ruleset.ACTIVITY";
+file = "sandpit.code_db.Ruleset.src.DATA:11_ACTIVITY.csv";
+header = true;
+delimField = ",";
+}
+];
+
+import = [
+{
+hdbtable = "sandpit.code_db.Ruleset.src::Ruleset.ACT_TCODE";
+file = "sandpit.code_db.Ruleset.src.DATA:12_ACT_TCODE.csv";
+header = true;
+delimField = ",";
+}
+];
+
+import = [
+{
+hdbtable = "sandpit.code_db.Ruleset.src::Ruleset.ACT_AUTH";
+file = "sandpit.code_db.Ruleset.src.DATA:13_ACT_AUTH.csv";
+header = true;
+delimField = ",";
+}
+];
+
+import = [
+{
+hdbtable = "sandpit.code_db.Ruleset.src::Ruleset.TEST";
+file = "sandpit.code_db.Ruleset.src.DATA:14_TEST.csv";
+header = true;
+delimField = ",";
+}
+];
+
+import = [
+{
+hdbtable = "sandpit.code_db.Ruleset.src::Ruleset.TEST_ACTIVITY";
+file = "sandpit.code_db.Ruleset.src.DATA:15_TEST_ACTIVITY.csv";
+header = true;
+delimField = ",";
+}
+];
+
+import = [
+{
+hdbtable = "sandpit.code_db.Ruleset.src::Ruleset.RISK";
+file = "sandpit.code_db.Ruleset.src.DATA:16_RISK.csv";
+header = true;
+delimField = ",";
+}
+];
+
+import = [
+{
+hdbtable = "sandpit.code_db.Ruleset.src::Ruleset.MD_RISK_RATING";
+file = "sandpit.code_db.Ruleset.src.DATA:17_MD_RISK_RATING.csv";
+header = true;
+delimField = ",";
+}
+];
+
+import = [
+{
+hdbtable = "sandpit.code_db.Ruleset.src::Ruleset.RISK_TEST";
+file = "sandpit.code_db.Ruleset.src.DATA:18_RISK_TEST.csv";
+header = true;
+delimField = ",";
+}
+];
+
+import = [
+{
+hdbtable = "sandpit.code_db.Ruleset.src::Ruleset.BUSINESS_CONTROL";
+file = "sandpit.code_db.Ruleset.src.DATA:19_BUSINESS_CONTROL.csv";
+header = true;
+delimField = ",";
+}
+];
+
+import = [
+{
+hdbtable = "sandpit.code_db.Ruleset.src::Ruleset.TEST_BUSINESS_CONTROL";
+file = "sandpit.code_db.Ruleset.src.DATA:20_TEST_BUSINESS_CONTROL.csv";
+header = true;
+delimField = ",";
+}
+];
