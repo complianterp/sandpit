@@ -1,5 +1,3 @@
-<<<<<<< HEAD
-=======
 {
 	"role":{
 		"name": "admin",
@@ -17,4 +15,3 @@
 		}]
       }
 }
->>>>>>> refs/heads/master
