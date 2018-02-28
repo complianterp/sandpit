@@ -3,42 +3,19 @@ _schema-version: '2.0'
 description: Sandpit area
 version: 0.0.1
 modules:
-<<<<<<< HEAD
-  - name: Rule_Set
-    type: hdb
-    path: core_db/Ruleset
-    requires:
-      - name: hdi_Rule_Set
-  
-  - name: web
-    type: html5
-    path: web
-    requires:
-      - name: uaa
-=======
+
  - name: Rule_Set
    type: hdb
    path: core_db/Ruleset
    requires:
     - name: hdi_Rule_Set
 
-
- - name: Ruleset
-   type: java
-   path: Ruleset
-   parameters:
-      memory: 512M
-   provides:
-    - name: Ruleset_api
-      properties:
-         url: ${default-url}
+ - name: web
+   type: html5
+   path: web
    requires:
-    - name: hdi_Rule_Set
-      properties:
-         JBP_CONFIG_RESOURCE_CONFIGURATION: '[tomcat/webapps/ROOT/META-INF/context.xml:
-            {"service_name_for_DefaultDB" : "~{hdi-container-name}"}]'
+     - name: uaa
 
->>>>>>> refs/heads/master
 resources:
   - name: hdi_Rule_Set
     properties:
