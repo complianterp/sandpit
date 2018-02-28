@@ -1,26 +1,27 @@
 namespace sandpit.Rule_Set;
 
+@OData.publish : true
 context Ruleset {
-    @OData.publish : true
+  
     /*@@layout{"layoutInfo":{"x":347,"y":-80.5}}*/
     entity MD_MODULE {
         key MODULE_ID   : String(10) not null;
             MODULE_NAME : String(60) not null;
     };
-    
+
     /*@@layout{"layoutInfo":{"x":626,"y":-80.5}}*/
     entity MD_SUB_MODULE {
         key SUB_MODULE_ID   : String(10) not null;
             SUB_MODULE_NAME : String(60) not null;
     };
 
-    /*@@layout{"layoutInfo":{"x":863,"y":267.5}}*/
+    /*@@layout{"layoutInfo":{"x":797,"y":871.5}}*/
     entity MD_PROCESSES {
         key PROCESS_ID   : String(10) not null;
             PROCESS_NAME : String(60) not null;
     };
 
-    /*@@layout{"layoutInfo":{"x":863,"y":362.5}}*/
+    /*@@layout{"layoutInfo":{"x":804,"y":969.5}}*/
     entity MD_SUB_PROCESSES {
         key SUB_PROCESS_ID   : String(10) not null;
             SUB_PROCESS_NAME : String(60) not null;
@@ -37,7 +38,7 @@ context Ruleset {
             TTEXT : String(60);
     };
 
-    /*@@layout{"layoutInfo":{"x":1078,"y":573.5}}*/
+    /*@@layout{"layoutInfo":{"x":1167,"y":302.5}}*/
     entity S_TOBJT {
             LANGU  : String(10) not null;
         key OBJECT : String(10) not null;
@@ -50,14 +51,14 @@ context Ruleset {
             COMPANY_NAME : String(60) not null;
     };
 
-    /*@@layout{"layoutInfo":{"x":821,"y":743.5}}*/
+    /*@@layout{"layoutInfo":{"x":790,"y":709.5}}*/
     entity LOGICAL_SYSTEMS {
         key SYS_ID    : String(60) not null;
         key CLIENT_ID : String(10) not null;
-            CUST_ID   : association[1..1] to CUSTOMERS {CUST_ID};
+            CUST_ID   : association[1..1] to CUSTOMERS { CUST_ID };
     };
 
-    
+
     /*@@layout{"layoutInfo":{"x":491,"y":475.5}}*/
     entity USERS {
         key USER_ID      : String(60) not null;
@@ -68,8 +69,8 @@ context Ruleset {
             END_DATE     : LocalDate;
             TIME_ZONE    : String(10);
             ADMIN_ACCESS : Boolean;
-            CUSTOMER     : association[1..1] to CUSTOMERS {CUST_ID};
-    };    
+            CUSTOMER     : association[1..1] to CUSTOMERS { CUST_ID };
+    };
 
     /*@@layout{"layoutInfo":{"x":33,"y":9.5}}*/
     entity RULE_SET {
@@ -78,37 +79,39 @@ context Ruleset {
             DESCRIPTION        : LargeString;
             ACTIVE             : Boolean;
             GLOBAL_OR_CUSTOMER : String(60) not null;
-            CUSTOMER           : association[1..1] to CUSTOMERS {CUST_ID};
-            OWNER              : association[1..1] to USERS {USER_ID};
+            CUSTOMER           : association[1..1] to CUSTOMERS { CUST_ID };
+            OWNER              : association[1..1] to USERS { USER_ID };
+            WORKFLOW_FLAG	   :Boolean;
     };
-    
+
     /*@@layout{"layoutInfo":{"x":484,"y":207.5}}*/
     entity ACTIVITY {
         key ACT_ID      : String(10) not null;
             ACT_NAME    : String(60) not null;
-            RS_ID       : association[1..1] to RULE_SET {RS_ID};
+            RS_ID       : association[1..1] to RULE_SET { RS_ID };
             ACTIVE      : Boolean    not null;
             SEVERITY    : String(60) not null;
-            MODULE      : association[1..1] to MD_MODULE {MODULE_ID};
-            SUB_MODULE  : association[1..1] to MD_SUB_MODULE {SUB_MODULE_ID};
-            OWNER       : association[1..1] to USERS {USER_ID};
-            PROCESS     : association[1..1] to MD_PROCESSES {PROCESS_ID};
-            SUB_PROCESS : association[1..1] to MD_SUB_PROCESSES {SUB_PROCESS_ID};
+            MODULE      : association[1..1] to MD_MODULE { MODULE_ID };
+            SUB_MODULE  : association[1..1] to MD_SUB_MODULE { SUB_MODULE_ID };
+            OWNER       : association[1..1] to USERS { USER_ID };
+            PROCESS     : association[1..1] to MD_PROCESSES { PROCESS_ID };
+            SUB_PROCESS : association[1..1] to MD_SUB_PROCESSES { SUB_PROCESS_ID };
+            WORKFLOW_FLAG : Boolean;
     };
 
     /*@@layout{"layoutInfo":{"x":826,"y":76.5}}*/
     entity ACT_TCODE {
         key ACT_ID       : association[*, 1..1] to ACTIVITY { ACT_ID };
             ACTIVE       : Boolean not null;
-        key TCODE        : association[*, 1..1] to S_TSTC {TCODE};
+        key TCODE        : association[*, 1..1] to S_TSTC { TCODE };
         key GROUP_NUMBER : Boolean not null;
     };
 
-    /*@@layout{"layoutInfo":{"x":800,"y":538.5}}*/
+    /*@@layout{"layoutInfo":{"x":833,"y":262.5}}*/
     entity ACT_AUTH {
         key ACT_ID         : association[1..1] to ACTIVITY { ACT_ID };
         key GROUP_NUMBER   : Integer    not null;
-        key OBJECT         : association[1..1] to S_TOBJT {OBJECT};
+        key OBJECT         : association[1..1] to S_TOBJT { OBJECT };
             AUTH_FIELD     : String(20) not null;
             AUTH_VALUES    : String(20) not null;
             LOGIC_OPERATOR : Integer    not null;
@@ -116,22 +119,23 @@ context Ruleset {
     };
 
 
-    /*@@layout{"layoutInfo":{"x":-354,"y":172.5}}*/
+    /*@@layout{"layoutInfo":{"x":-251,"y":402.5}}*/
     entity TESTS {
         key TST_ID      : String(10) not null;
             TST_NAME    : String(60) not null;
             RS_ID       : association[1..1] to RULE_SET { RS_ID };
-        	/*SEVERITY    : String(60) not null; Removed*/
-			/*SCAN_LOGIC  : Integer    not null; Removed*/
-        	ACTIVE          : Boolean;
+        /*SEVERITY    : String(60) not null; Removed*/
+/*SCAN_LOGIC  : Integer    not null; Removed*/
+        ACTIVE          : Boolean;
             DESCRIPTION : LargeString;
             OWNER       : association[1..1] to USERS { USER_ID };
+            WORKFLOW_FLAG : Boolean;
     };
 
     /*@@layout{"layoutInfo":{"x":75,"y":240.5}}*/
     entity TEST_ACTIVITY {
-        key TST_ID : association[1..1] to TESTS {TST_ID};
-        key ACT_ID : association[1..1] to ACTIVITY {ACT_ID};
+        key TST_ID : association[1..1] to TESTS { TST_ID };
+        key ACT_ID : association[1..1] to ACTIVITY { ACT_ID };
     };
 
     /*@@layout{"layoutInfo":{"x":220,"y":-257.5}}*/
@@ -141,6 +145,7 @@ context Ruleset {
             RISK_RATING : String(60) /*not null*/; /*add back after values confirmed*/ /*Is this required?*/
             RISK_CAT    : String(60) /*not null*/; /*add back after values confirmed*/ /*Is this required?*/
             RULE_SET    : association[1..1] to Ruleset.RULE_SET { RS_ID };
+            WORKFLOW_FLAG : Boolean;
     };
 
     /*@@layout{"layoutInfo":{"x":-512,"y":-200.5}}*/
@@ -158,43 +163,44 @@ context Ruleset {
 
     /*@@layout{"layoutInfo":{"x":-159,"y":-385.5}}*/
     entity RISK_TEST {
-        key RISK                         : association[1..1] to RISKS {RISK_ID};
-        key TEST                         : association[1..1] to TESTS {TST_ID};
-        key RISK_RATING                  : association[1..1] to MD_RISK_RATING {RISK_RATING_ID};
-            ANNUALISED_LOSS_EXPECTANCY   : Decimal(15,2);
-            ESTIMATED_ANNUALISED_LOSS    : Decimal(15,2);
-            ALE_PROBABILITY              : Decimal(15,10);
-            BEST_CASE_RISK_EVENT_IMPACT  : Decimal(15,2);
-            EXPECTED_RISK_EVENT_IMPACT   : Decimal(15,2);
-            WORST_CASE_RISK_EVENT_IMPACT : Decimal(15,2);
-            BEST_CASE_RISK_EVENT_FREQ    : Decimal(15,2);
-            EXPECTED_RISK_EVENT_FREQ     : Decimal(15,2);
-            WORST_CASE_RISK_EVENT_FREQ   : Decimal(15,2);
-            MONTE_CARLO_IMPACT           : Decimal(15,2);
-            MONTE_CARLO_FREQ             : Decimal(15,2);
-            DETERMINISTIC                : Decimal(15,2);
-            MONTE_CARLO_OUTPUT           : Decimal(15,2);
+        key RISK                         : association[1..1] to RISKS { RISK_ID };
+        key TEST                         : association[1..1] to TESTS { TST_ID };
+        key RISK_RATING                  : association[1..1] to MD_RISK_RATING { RISK_RATING_ID };
+            ANNUALISED_LOSS_EXPECTANCY   : Decimal(15, 2);
+            ESTIMATED_ANNUALISED_LOSS    : Decimal(15, 2);
+            ALE_PROBABILITY              : Decimal(15, 10);
+            BEST_CASE_RISK_EVENT_IMPACT  : Decimal(15, 2);
+            EXPECTED_RISK_EVENT_IMPACT   : Decimal(15, 2);
+            WORST_CASE_RISK_EVENT_IMPACT : Decimal(15, 2);
+            BEST_CASE_RISK_EVENT_FREQ    : Decimal(15, 2);
+            EXPECTED_RISK_EVENT_FREQ     : Decimal(15, 2);
+            WORST_CASE_RISK_EVENT_FREQ   : Decimal(15, 2);
+            MONTE_CARLO_IMPACT           : Decimal(15, 2);
+            MONTE_CARLO_FREQ             : Decimal(15, 2);
+            DETERMINISTIC                : Decimal(15, 2);
+            MONTE_CARLO_OUTPUT           : Decimal(15, 2);
     };
 
-    /*@@layout{"layoutInfo":{"x":-67,"y":419.5}}*/
+    /*@@layout{"layoutInfo":{"x":-51,"y":650.5}}*/
     entity BUSINESS_CONTROL {
         key BC_ID       : String(10) not null;
         key RS_ID       : association[1..1] to RULE_SET { RS_ID };
             BC_NAME     : String(60) not null;
             ACTIVE      : Boolean;
-            /*SEVERITY    : String(20) not null;*/ /*Removed*/
-            TYPE        : String(60) not null;
+        /*SEVERITY    : String(20) not null;*/ /*Removed*/
+        TYPE            : String(60) not null;
             PROGRAM     : LargeString;
             FREQUENCY   : String(60) not null;
             OWNER       : association[1..1] to USERS { USER_ID };
-            PROCESS     : association[1..1] to MD_PROCESSES {PROCESS_ID};
-            SUB_PROCESS	: association[1..1] to MD_SUB_PROCESSES {SUB_PROCESS_ID};
+            PROCESS     : association[1..1] to MD_PROCESSES { PROCESS_ID };
+            SUB_PROCESS : association[1..1] to MD_SUB_PROCESSES { SUB_PROCESS_ID };
             DESCRIPTION : LargeString;
             VARIANT     : String(60);
             MONITOR     : association[1..1] to USERS { USER_ID };
+            WORKFLOW_FLAG : Boolean;
     };
 
-    /*@@layout{"layoutInfo":{"x":-347,"y":428.5}}*/
+    /*@@layout{"layoutInfo":{"x":-337,"y":734.5}}*/
     entity TESTS_BUSINESS_CONTROL {
         key TST_ID : association[1..1] to TESTS { TST_ID };
         key BC_ID  : association[1..1] to BUSINESS_CONTROL { BC_ID };

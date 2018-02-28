@@ -1,11 +1,11 @@
-RISK_ID,RISK_NAME,RISK_RATING,RISK_CAT,RULE_SET
-RSK000001,Fraud,,,RS0001
-RSK000002,Loss of funds,,,RS0001
-RSK000003,Waste of resources,,,RS0001
-RSK000004,Inefficient Processes,,,RS0001
-RSK000005,Email Scam,,,RS0001
-RSK000006,Damage or Destruction of Data,,,RS0001
-RSK000007,Loss of Security,,,RS0001
-RSK000008,Loss of Data Integrity,,,RS0001
-RSK000009,Money leakage?,,,RS0001
-RSK000010,Inefficiency?,,,RS0001
+RISK_ID,RISK_NAME,RISK_RATING,RISK_CAT,RULE_SET,WORKFLOW_FLAG
+RSK000001,Fraud,,,RS0001,0
+RSK000002,Loss of funds,,,RS0001,0
+RSK000003,Waste of resources,,,RS0001,0
+RSK000004,Inefficient Processes,,,RS0001,0
+RSK000005,Email Scam,,,RS0001,0
+RSK000006,Damage or Destruction of Data,,,RS0001,0
+RSK000007,Loss of Security,,,RS0001,0
+RSK000008,Loss of Data Integrity,,,RS0001,0
+RSK000009,Money leakage?,,,RS0001,0
+RSK000010,Inefficiency?,,,RS0001,0
