@@ -1,6 +1,23 @@
 namespace sandpit.Rule_Set;
 
 @OData.publish : true
+context somedata {
+	entity table {
+	key primary_key		: Integer not null;
+		text			: String(10);
+	};
+	entity table2 {
+	key primary_key		: Integer not null;
+		text			: String(10);
+		association     : association[1..1] to table { primary_key };
+	};
+    entity MD_MODULE {
+        key MODULE_ID   : String(10) not null;
+            MODULE_NAME : String(60) not null;
+    };
+}
+
+@OData.publish : false
 context Ruleset {
   
     /*@@layout{"layoutInfo":{"x":347,"y":-80.5}}*/

@@ -1,6 +1,8 @@
+Ruleset
+core_js
 <<<<<<< HEAD
 web
 =======
-Ruleset
->>>>>>> refs/heads/master
 core_db/Ruleset
+>>>>>>> refs/heads/master
+core_odata

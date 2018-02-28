@@ -3,19 +3,44 @@ _schema-version: '2.0'
 description: Sandpit area
 version: 0.0.1
 modules:
-
- - name: Rule_Set
-   type: hdb
-   path: core_db/Ruleset
-   requires:
-    - name: hdi_Rule_Set
-
- - name: web
-   type: html5
-   path: web
-   requires:
-     - name: uaa
-
+  - name: Rule_Set
+    type: hdb
+    path: core_db/Ruleset
+    requires:
+      - name: hdi_Rule_Set
+  - name: web
+    type: html5
+    path: web
+    requires:
+      - name: uaa
+      - name: core_js_api
+        group: destinations
+        properties:
+          name: core-backend
+          url: '~{url}'
+          forwardAuthToken: true
+  - name: core_odata
+    type: java
+    path: core_odata
+    provides:
+      - name: core_odata_api
+        properties:
+          url: '${default-url}'
+    requires:
+      - name: hdi_Rule_Set
+        properties:
+          JBP_CONFIG_RESOURCE_CONFIGURATION: '[tomcat/webapps/ROOT/META-INF/context.xml: {"service_name_for_DefaultDB" : "~{hdi-container-name}"}]'
+  - name: core_js
+    type: nodejs
+    path: core_js
+    provides:
+      - name: core_js_api
+        properties:
+          url: '${default-url}'
+    requires:
+      - name: hdi_Rule_Set
+      - name: uaa
+      - name: Rule_Set
 resources:
   - name: hdi_Rule_Set
     properties:
