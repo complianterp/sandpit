@@ -41,6 +41,9 @@ modules:
       - name: hdi_Rule_Set
       - name: uaa
       - name: Rule_Set
+
+  
+
 resources:
   - name: hdi_Rule_Set
     properties:
@@ -50,3 +53,12 @@ resources:
     type: com.sap.xs.uaa-space
     parameters:
       config_path: ./xs-security.json
+
+  - name: hdi_core_database
+    parameters:
+       config:
+          schema: contracrisk
+    properties:
+       hdi-container-name_2: ${service-name}
+    type: com.sap.xs.hdi-container
+

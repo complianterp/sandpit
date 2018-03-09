@@ -1,0 +1,318 @@
+{
+ "format_version": 1,
+ "imports": [{
+  "target_table": "sandpit.Rule_Set::ruleSet.module",
+  "source_data": {
+   "data_type": "CSV",
+   "file_name": "sandpit.Rule_Set::01Module.csv",
+   "has_header": true,
+   "dialect": "HANA",
+   "type_config": {
+    "delimiter": ","
+   }
+  },
+  "import_settings": {"import_columns": ["moduleId", "moduleName"]},
+  "column_mappings": {"moduleId": 1, "moduleName": 2}},
+	
+ 
+ {
+  "target_table": "sandpit.Rule_Set::ruleSet.subModule",
+  "source_data": {
+   "data_type": "CSV",
+   "file_name": "sandpit.Rule_Set::02SubModule.csv",
+   "has_header": true,
+   "dialect": "HANA",
+   "type_config": {
+    "delimiter": ","
+   }
+  },
+  "import_settings": {"import_columns": ["moduleId","subModuleId","subModuleName"]},
+  "column_mappings": {"moduleId": 1,"subModuleId": 2,"subModuleName": 3}
+ }, 
+
+ {
+  "target_table": "sandpit.Rule_Set::ruleSet.processes",
+  "source_data": {
+   "data_type": "CSV",
+   "file_name": "sandpit.Rule_Set::03Processes.csv",
+   "has_header": true,
+   "dialect": "HANA",
+   "type_config": {
+    "delimiter": ","
+   }
+  },
+  "import_settings": {"import_columns": ["processId","processName"]},
+  "column_mappings": {"processId": 1,"processName": 2}
+ }, 
+
+
+ {
+  "target_table": "sandpit.Rule_Set::ruleSet.subProcesses",
+  "source_data": {
+   "data_type": "CSV",
+   "file_name": "sandpit.Rule_Set::04SubProcesses.csv",
+   "has_header": true,
+   "dialect": "HANA",
+   "type_config": {
+    "delimiter": ","
+   }
+  },
+  "import_settings": {"import_columns": ["processId","subProcessId","subProcessName"]},
+  "column_mappings": {"processId": 1,"subProcessId": 2, "subProcessName": 3}
+ },
+
+
+ {
+  "target_table": "sandpit.Rule_Set::ruleSet.tstc",
+  "source_data": {
+   "data_type": "CSV",
+   "file_name": "sandpit.Rule_Set::05Tstc.csv",
+   "has_header": true,
+   "dialect": "HANA",
+   "type_config": {
+    "delimiter": ","
+   }
+  },
+  "import_settings": {"import_columns": ["tcode","pgmna","dypno","menue","cinfo","arbgb","ttext"]},
+  "column_mappings": {"tcode": 1,"pgmna": 2, "dypno": 3,"menue": 4, "cinfo": 5,"arbgb": 6,"ttext": 7}
+ },
+
+
+ {
+  "target_table": "sandpit.Rule_Set::ruleSet.tobjt",
+  "source_data": {
+   "data_type": "CSV",
+   "file_name": "sandpit.Rule_Set::06Tobjt.csv",
+   "has_header": true,
+   "dialect": "HANA",
+   "type_config": {
+    "delimiter": ","
+   }
+  },
+  "import_settings": {"import_columns": ["langu","object","ttext"]},
+  "column_mappings": {"langu": 1,"object": 2, "ttext": 3}
+ },
+
+
+ {
+  "target_table": "sandpit.Rule_Set::ruleSet.customers",
+  "source_data": {
+   "data_type": "CSV",
+   "file_name": "sandpit.Rule_Set::07Customers.csv",
+   "has_header": true,
+   "dialect": "HANA",
+   "type_config": {
+    "delimiter": ","
+   }
+  },
+  "import_settings": {"import_columns": ["custId","companyName"]},
+  "column_mappings": {"tcode": 1,"pgmna": 2}
+ },
+
+
+ {
+  "target_table": "sandpit.Rule_Set::ruleSet.logicalSystems",
+  "source_data": {
+   "data_type": "CSV",
+   "file_name": "sandpit.Rule_Set::08LogicalSystems.csv",
+   "has_header": true,
+   "dialect": "HANA",
+   "type_config": {
+    "delimiter": ","
+   }
+  },
+  "import_settings": {"import_columns": ["custId","sysId","clientId"]},
+  "column_mappings": {"custId": 1,"sysId": 2,"clientId": 3}
+ },
+
+
+ {
+  "target_table": "sandpit.Rule_Set::ruleSet.users",
+  "source_data": {
+   "data_type": "CSV",
+   "file_name": "sandpit.Rule_Set::09Users.csv",
+   "has_header": true,
+   "dialect": "HANA",
+   "type_config": {
+    "delimiter": ","
+   }
+  },
+  "import_settings": {"import_columns": ["custId","userId","firstName","lastName","email","startDate","endDate","timeZone","adminAccess"]},
+  "column_mappings": {"custId": 1,"userId": 2,"firstName": 3,"lastName": 4,"email": 5,"startDate": 6,"endDate": 7,"timeZone": 8,"adminAccess": 9}
+ },
+
+
+ {
+  "target_table": "sandpit.Rule_Set::ruleSet.ruleSet",
+  "source_data": {
+   "data_type": "CSV",
+   "file_name": "sandpit.Rule_Set::10RuleSet.csv",
+   "has_header": true,
+   "dialect": "HANA",
+   "type_config": {
+    "delimiter": ","
+   }
+  },
+  "import_settings": {"import_columns": ["custId","rsId","rsName","description","active","globalOrCustomer","owner","workflowFlag"]},
+  "column_mappings": {"custId": 1,"rsId": 2,"rsName": 3,"description": 4,"active": 5,"globalOrCustomer": 6,"owner": 7,"workflowFlag": 8}
+ },
+
+
+ {
+  "target_table": "sandpit.Rule_Set::ruleSet.activity",
+  "source_data": {
+   "data_type": "CSV",
+   "file_name": "sandpit.Rule_Set::11Activity.csv",
+   "has_header": true,
+   "dialect": "HANA",
+   "type_config": {
+    "delimiter": ","
+   }
+  },
+  "import_settings": {"import_columns": ["actId","actName","rsId","active","severity","moduleId","subModuleId","owner","processId","subProcessId","workflowFlag"]},
+  "column_mappings": {"actId": 1,"actName": 2,"rsId": 3,"active": 4,"severity": 5,"moduleId": 6,"subModuleId": 7,"owner": 8,"processId": 9,"subProcessId": 10,"workflowFlag": 11}
+ },
+{
+  "target_table": "sandpit.Rule_Set::ruleSet.actTcode",
+  "source_data": {
+   "data_type": "CSV",
+   "file_name": "sandpit.Rule_Set::12ActTcode.csv",
+   "has_header": true,
+   "dialect": "HANA",
+   "type_config": {
+    "delimiter": ","
+   }
+  },
+  "import_settings": {"import_columns": ["actId","active","tcode","groupNumber"]},
+  "column_mappings": {"actId": 1,"active": 2,"tcode": 3,"groupNumber": 4}
+ }, 
+
+
+ {
+  "target_table": "sandpit.Rule_Set::ruleSet.actAuth",
+  "source_data": {
+   "data_type": "CSV",
+   "file_name": "sandpit.Rule_Set::13ActAuth.csv",
+   "has_header": true,
+   "dialect": "HANA",
+   "type_config": {
+    "delimiter": ","
+   }
+  },
+  "import_settings": {"import_columns": ["actId","groupNumber","object","authField","authValues","logicOperator","active"]},
+  "column_mappings": {"actId": 1,"groupNumber": 2,"object": 3,"authField": 4,"authValues": 5,"logicOperator": 6,"active": 7}
+ }, 
+
+
+ {
+  "target_table": "sandpit.Rule_Set::ruleSet.tests",
+  "source_data": {
+   "data_type": "CSV",
+   "file_name": "sandpit.Rule_Set::14Tests.csv",
+   "has_header": true,
+   "dialect": "HANA",
+   "type_config": {
+    "delimiter": ","
+   }
+  },
+  "import_settings": {"import_columns": ["tstId","tstName","rsId","active","description","owner","workflowFlag"]},
+  "column_mappings": {"tstId": 1,"tstName": 2,"rsId": 3,"active": 4,"description": 5,"owner": 6,"workflowFlag": 7}
+ }, 
+
+
+
+ {
+  "target_table": "sandpit.Rule_Set::ruleSet.testActivity",
+  "source_data": {
+   "data_type": "CSV",
+   "file_name": "sandpit.Rule_Set::15TestActivity.csv",
+   "has_header": true,
+   "dialect": "HANA",
+   "type_config": {
+    "delimiter": ","
+   }
+  },
+  "import_settings": {"import_columns": ["tstId","actId"]},
+  "column_mappings": {"tstId": 1,"actId": 2}
+ }, 
+
+
+
+ {
+  "target_table": "sandpit.Rule_Set::ruleSet.risks",
+  "source_data": {
+   "data_type": "CSV",
+   "file_name": "sandpit.Rule_Set::16Risks.csv",
+   "has_header": true,
+   "dialect": "HANA",
+   "type_config": {
+    "delimiter": ","
+   }
+  },
+  "import_settings": {"import_columns": ["riskId","rsId","riskName","riskRating","riskCat","workflowFlag"]},
+  "column_mappings": {"riskId": 1,"rsId": 2,"riskName": 3,"riskRating": 4,"riskCat": 5,"workflowFlag": 6}
+ }, 
+
+
+  {
+  "target_table": "sandpit.Rule_Set::ruleSet.riskRating",
+  "source_data": {
+   "data_type": "CSV",
+   "file_name": "sandpit.Rule_Set::17RiskRating.csv",
+   "has_header": true,
+   "dialect": "HANA",
+   "type_config": {
+    "delimiter": ","
+   }
+  },
+  "import_settings": {"import_columns": ["riskRatingId","rsId","consequence","likelihood","cXl","cl","defaultMatrixRating","range","defaultRiskClassification","defaultRiskRange"]},
+  "column_mappings": {"riskRatingId": 1,"rsId": 2,"consequence": 3,"likelihood": 4,"cXl": 5,"cl": 6,"defaultMatrixRating": 7,"range": 8,"defaultRiskClassification": 9,"defaultRiskRange": 10}
+ },
+
+
+ {
+  "target_table": "sandpit.Rule_Set::ruleSet.riskTest",
+  "source_data": {
+   "data_type": "CSV",
+   "file_name": "sandpit.Rule_Set::18RiskTest.csv",
+   "has_header": true,
+   "dialect": "HANA",
+   "type_config": {
+    "delimiter": ","
+   }
+  },
+  "import_settings": {"import_columns": ["rsId","tstId","riskId","riskRatingId","annualisedLossExpectancy","estimatedAnnualisedLoss","aleProbability","bestCaseRiskEventImpact","expectedRiskEventImpact","worstCaseRiskEventImpact","bestCaseRiskEventFreq","expectedRiskEventFreq","worstCaseRiskEventFreq","monteCarloImpact","monteCarloFreq","deterministic","monteCarloOutput"]},
+  "column_mappings": {"rsId": 1,"tstId": 2,"riskId": 3,"riskRatingId": 4,"annualisedLossExpectancy": 5,"estimatedAnnualisedLoss": 6,"aleProbability": 7,"bestCaseRiskEventImpact": 8,"expectedRiskEventImpact": 9,"worstCaseRiskEventImpact": 10,"bestCaseRiskEventFreq": 11,"expectedRiskEventFreq": 12,"worstCaseRiskEventFreq": 13,"monteCarloImpact": 14,"monteCarloFreq": 15,"deterministic": 16,"monteCarloOutput": 17}
+ }, 
+
+
+ {
+  "target_table": "sandpit.Rule_Set::ruleSet.businessControl",
+  "source_data": {
+   "data_type": "CSV",
+   "file_name": "sandpit.Rule_Set::19BusinessControl.csv",
+   "has_header": true,
+   "dialect": "HANA",
+   "type_config": {
+    "delimiter": ","
+   }
+  },
+  "import_settings": {"import_columns": ["bcId","rsId","bcName","active","type","program","frequency","owner","processId","subProcessId","description","variant","monitor","workflowFlag"]},
+  "column_mappings": {"bcId": 1,"rsId": 2,"bcName": 3,"active": 4,"type": 5,"program": 6,"frequency": 7,"owner": 8,"processId": 9,"subProcessId": 10,"description": 11,"variant": 12,"monitor": 13,"workflowFlag": 14}
+ }, 
+
+ {
+  "target_table": "sandpit.Rule_Set::ruleSet.testsBusinessControl",
+  "source_data": {
+   "data_type": "CSV",
+   "file_name": "sandpit.Rule_Set::20TestsBusinessControl.csv",
+   "has_header": true,
+   "dialect": "HANA",
+   "type_config": {
+    "delimiter": ","
+   }
+  },
+  "import_settings": {"import_columns": ["tstId","bcId"]},
+  "column_mappings": {"tstId": 1,"bcId": 2}
+ }] 
+}
