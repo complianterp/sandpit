@@ -1,312 +1,713 @@
 namespace sandpit.Rule_Set;
 
 /*
-@OData.publish : true
+@ODATA.PUBLISH : TRUE
 
-context somedata {
-	entity table {
-	key primary_key		: Integer not null;
-		text			: String(10);
+CONTEXT SOMEDATA {
+	ENTITY TABLE {
+	KEY PRIMARY_KEY		: Integer NOT NULL;
+		TEXT			: String(10);
 	};
-	entity table2 {
-	key primary_key		: Integer not null;
-		text			: String(10);
-		association     : association[1..1] to table { primary_key };
+	ENTITY TABLE2 {
+	KEY PRIMARY_KEY		: Integer NOT NULL;
+		TEXT			: String(10);
+		ASSOCIATION     : ASSOCIATION[1..1] TO TABLE { PRIMARY_KEY };
 	};
-    entity MD_MODULE {
-        key MODULE_ID   : String(10) not null;
-            MODULE_NAME : String(60) not null;
+    ENTITY MD_MODULE {
+        KEY MODULE_ID   : String(10) NOT NULL;
+            MODULE_NAME : String(60) NOT NULL;
     };
 
 }
  */
 
-@OData.publish : false
+//@ODATA.PUBLISH : FALSE
 context ruleSet {
 
-    /*@@layout{"layoutInfo":{"x":348,"y":-45.5}}*/
-    entity module {
-        key moduleId    : String(10) not null;
-            moduleName  : String(60) not null;
-            toSubModule : association[0..*] to subModule on toSubModule.moduleId = moduleId; /*Out*/
-            toActivity  : association[0..*] to activity  on toActivity.moduleId = moduleId; /*Out*/
+    /*@@LAYOUT{"LAYOUTINFO":{"X":348,"Y":-45.5}}*/
+    entity MODULE {
+        key MODULE_ID     : String(10) not null;
+            MODULE_NAME   : String(60) not null;
+            TO_SUB_MODULE : association[0..*] to SUB_MODULE on TO_SUB_MODULE.MODULE_ID = MODULE_ID; /*OUT*/
+            TO_ACTIVITY   : association[0..*] to ACTIVITY   on TO_ACTIVITY.MODULE_ID = MODULE_ID; /*OUT*/
     };
 
-    /*@@layout{"layoutInfo":{"x":718,"y":-93.5}}*/
-    entity subModule {
-        key moduleId      : String(10) not null; /*Association*/
-        key subModuleId   : String(10) not null;
-            subModuleName : String(60) not null;
-            toModule      : association[1] to module   on toModule.moduleId = moduleId; /*In*/
-            toActivity    : association[1] to activity on toActivity.subModuleId = subModuleId; /*Out*/
+    /*@@LAYOUT{"LAYOUTINFO":{"X":718,"Y":-93.5}}*/
+    entity SUB_MODULE {
+        key MODULE_ID       : String(10) not null; /*ASSOCIATION*/
+        key SUB_MODULE_ID   : String(10) not null;
+            SUB_MODULE_NAME : String(60) not null;
+            TO_MODULE       : association[1] to MODULE   on TO_MODULE.MODULE_ID = MODULE_ID; /*IN*/
+            TO_ACTIVITY     : association[1] to ACTIVITY on TO_ACTIVITY.SUB_MODULE_ID = SUB_MODULE_ID; /*OUT*/
     };
 
-    /*@@layout{"layoutInfo":{"x":1129,"y":1087.5}}*/
-    entity processes {
-        key processId         : String(10) not null;
-            processName       : String(60) not null;
-            toSubProcesses    : association[0..*] to subProcesses    on toSubProcesses.processId = processId; /*Out*/
-            toActivity        : association[0..*] to activity        on toActivity.processId = processId; /*Out*/
-            toBusinessControl : association[0..*] to businessControl on toBusinessControl.processId = processId; /*Out*/
+    /*@@LAYOUT{"LAYOUTINFO":{"X":1129,"Y":1087.5}}*/
+    entity PROCESSES {
+        key PROCESS_ID          : String(10) not null;
+            PROCESS_NAME        : String(60) not null;
+            TO_SUB_PROCESSES    : association[0..*] to SUB_PROCESSES    on TO_SUB_PROCESSES.PROCESS_ID = PROCESS_ID; /*OUT*/
+            TO_ACTIVITY         : association[0..*] to ACTIVITY         on TO_ACTIVITY.PROCESS_ID = PROCESS_ID; /*OUT*/
+            TO_BUSINESS_CONTROL : association[0..*] to BUSINESS_CONTROL on TO_BUSINESS_CONTROL.PROCESS_ID = PROCESS_ID; /*OUT*/
     };
 
-    /*@@layout{"layoutInfo":{"x":719,"y":1244.5}}*/
-    entity subProcesses {
-        key processId         : String(10) not null; /*Association*/
-        key subProcessId      : String(10) not null;
-            subProcessName    : String(60) not null;
-            toProcesses       : association[1]    to processes       on toProcesses.processId = processId; /*In*/
-            toActivity        : association[0..*] to activity        on toActivity.subProcessId = subProcessId; /*Out*/
-            tobusinessControl : association[0..*] to businessControl on tobusinessControl.subProcessId = subProcessId; /*Out*/
+    /*@@LAYOUT{"LAYOUTINFO":{"X":719,"Y":1244.5}}*/
+    entity SUB_PROCESSES {
+        key PROCESS_ID          : String(10) not null; /*ASSOCIATION*/
+        key SUB_PROCESS_ID      : String(10) not null;
+            SUB_PROCESS_NAME    : String(60) not null;
+            TO_PROCESSES        : association[1]    to PROCESSES        on TO_PROCESSES.PROCESS_ID = PROCESS_ID; /*IN*/
+            TO_ACTIVITY         : association[0..*] to ACTIVITY         on TO_ACTIVITY.SUB_PROCESS_ID = SUB_PROCESS_ID; /*OUT*/
+            TO_BUSINESS_CONTROL : association[0..*] to BUSINESS_CONTROL on TO_BUSINESS_CONTROL.SUB_PROCESS_ID = SUB_PROCESS_ID; /*OUT*/
     };
 
-    /*@@layout{"layoutInfo":{"x":1281,"y":176.5}}*/
-    entity tstc {
-        key tcode      : String(20) not null;
-            pgmna      : String(40);
-            dypno      : Integer;
-            menue      : String(5);
-            cinfo      : Integer;
-            arbgb      : String(20);
-            ttext      : String(60);
-            toActTcode : association[0..*] to actTcode on toActTcode.tcode = tcode; /*Out*/
+    /*@@LAYOUT{"LAYOUTINFO":{"X":1281,"Y":176.5}}*/
+    entity TSTC {
+        key TCODE        : String(20) not null;
+            PGMNA        : String(40);
+            DYPNO        : Integer;
+            MENUE        : String(5);
+            CINFO        : Integer;
+            ARBGB        : String(20);
+            TTEXT        : String(60);
+            TO_ACT_TCODE : association[0..*] to ACT_TCODE on TO_ACT_TCODE.TCODE = TCODE; /*OUT*/
     };
 
-    /*@@layout{"layoutInfo":{"x":1256,"y":532.5}}*/
-    entity tobjt {
-            langu     : String(10) not null;
-        key object    : String(10) not null;
-            ttext     : String(60);
-            toActAuth : association[0..*] to actAuth on toActAuth.object = object; /*Out*/
+    /*@@LAYOUT{"LAYOUTINFO":{"X":1256,"Y":532.5}}*/
+    entity TOBJT {
+            LANGU       : String(10) not null;
+        key OBJECT      : String(10) not null;
+            TTEXT       : String(60);
+            TO_ACT_AUTH : association[0..*] to ACT_AUTH on TO_ACT_AUTH.OBJECT = OBJECT; /*OUT*/
     };
 
-    /*@@layout{"layoutInfo":{"x":445,"y":978.5}}*/
-    entity customers {
-        key custId           : String(10) not null;
-            companyName      : String(60) not null;
-            toLogicalSystems : association[0..*] to logicalSystems on toLogicalSystems.custId = custId; /*Out*/
-            toUsers          : association[0..*] to users          on toUsers.custId = custId; /*Out*/
-            toRuleSet        : association[0..*] to ruleSet        on toRuleSet.custId = custId; /*Out*/
+    /*@@LAYOUT{"LAYOUTINFO":{"X":445,"Y":978.5}}*/
+    entity CUSTOMERS {
+        key CUST_ID            : String(10) not null;
+            COMPANY_NAME       : String(60) not null;
+            TO_LOGICAL_SYSTEMS : association[0..*] to LOGICAL_SYSTEMS on TO_LOGICAL_SYSTEMS.CUST_ID = CUST_ID; /*OUT*/
+            TO_USERS           : association[0..*] to USERS           on TO_USERS.CUST_ID = CUST_ID; /*OUT*/
+            TO_RULE_SET        : association[0..*] to RULE_SET        on TO_RULE_SET.CUST_ID = CUST_ID; /*OUT*/
     };
 
-    /*@@layout{"layoutInfo":{"x":1145,"y":937.5}}*/
-    entity logicalSystems {
-        key custId      : String(10) not null; /*Association*/
-        key sysId       : String(60) not null;
-        key clientId    : String(10) not null;
-            toCustomers : association[1] to customers on toCustomers.custId = custId; /*In*/
-    };
-
-
-    /*@@layout{"layoutInfo":{"x":72,"y":813.5}}*/
-    entity users {
-        key custId                   : String(10) not null; /*Association*/
-        key userId                   : String(60) not null;
-            firstName                : String(60) not null;
-            lastName                 : String(60) not null;
-            email                    : String(60) not null;
-            startDate                : String(60);
-            endDate                  : String(60);
-            timeZone                 : String(10);
-            adminAccess              : Boolean;
-            toCustomers              : association[1]    to customers       on toCustomers.custId = custId; /*In*/
-            toRuleSet                : association[0..*] to ruleSet         on toRuleSet.owner = userId; /*Out*/
-            toActivity               : association[0..*] to activity        on toActivity.owner = userId; /*Out*/
-            toTests                  : association[0..*] to tests           on toTests.owner = userId; /*Out*/
-            toBusinessControlOwner   : association[0..*] to businessControl on toBusinessControlOwner.owner = userId; /*Out*/
-            toBusinessControlMonitor : association[0..*] to businessControl on toBusinessControlMonitor.monitor = userId; /*Out*/
-    };
-
-    /*@@layout{"layoutInfo":{"x":33,"y":9.5}}*/
-    entity ruleSet {
-        key custId            : String(10) not null; /*Association*/
-        key rsId              : String(10) not null;
-            rsName            : String(60) not null;
-            description       : LargeString;
-            active            : Boolean;
-            globalOrCustomer  : String(60) not null;
-            owner             : String(60) not null; /*Association*/
-            workflowFlag      : Boolean;
-            toCustomer        : association[1]    to customers       on toCustomer.custId = custId; /*In*/
-            toUsers           : association[1]    to users           on toUsers.userId = owner; /*In*/
-            toActivity        : association[0..*] to activity        on toActivity.rsId = rsId; /*Out*/
-            toTests           : association[0..*] to tests           on toTests.rsId = rsId; /*Out*/
-            toRisks           : association[0..*] to risks           on toRisks.rsId = rsId; /*Out*/
-            toRiskRating      : association[0..*] to riskRating      on toRiskRating.rsId = rsId; /*Out*/
-            toRiskTest        : association[0..*] to riskTest        on toRiskTest.rsId = rsId; /*Out*/
-            toBusinessControl : association[0..*] to businessControl on toBusinessControl.rsId = rsId; /*Out*/
-
-    };
-
-    /*@@layout{"layoutInfo":{"x":422,"y":329.5}}*/
-    entity activity {
-        key actId          : String(10) not null;
-            actName        : String(60) not null;
-            rsId           : String(10) not null; /*Association*/
-            active         : Boolean;
-            severity       : String(60) not null;
-            moduleId       : String(10) not null; /*Association*/
-            subModuleId    : String(10); /*Association*/
-            owner          : String(60); /*Association*/
-            processId      : String(10); /*Association*/
-            subProcessId   : String(10); /*Association*/
-            workflowFlag   : Boolean;
-            toRuleSet      : association[1]    to ruleSet      on toRuleSet.rsId = rsId; /*In*/
-            toModule       : association[1]    to module       on toModule.moduleId = moduleId; /*In*/
-            toSubModule    : association[1]    to subModule    on toSubModule.subModuleId = subModuleId; /*In*/
-            toUsers        : association[1]    to users        on toUsers.userId = owner; /*In*/
-            toProcesses    : association[1]    to processes    on toProcesses.processId = processId; /*In*/
-            toSubProcesses : association[1]    to subProcesses on toSubProcesses.subProcessId = subProcessId; /*In*/
-            toActTcode     : association[0..*] to actTcode     on toActTcode.actId = actId; /*Out*/
-            toActAuth      : association[0..*] to actAuth      on toActAuth.actId = actId; /*Out*/
-            toTestActivity : association[0..*] to testActivity on toTestActivity.actId = actId; /*Out*/
-
-
-    };
-
-    /*@@layout{"layoutInfo":{"x":877,"y":264.5}}*/
-    entity actTcode {
-        key actId       : String(10); /*Association*/
-            active      : Boolean;
-        key tcode       : String(20); /*Association*/
-        key groupNumber : Integer not null;
-            toActivity  : association[1] to activity on toActivity.actId = actId; /*In*/
-            toTstc      : association[1] to tstc     on toTstc.tcode = tcode; /*In*/
-    };
-
-    /*@@layout{"layoutInfo":{"x":927,"y":511.5}}*/
-    entity actAuth {
-        key actId         : String(10) not null; /*Association*/
-        key groupNumber   : Integer    not null;
-        key object        : String(60) not null; /*Association*/
-        key authField     : String(20) not null;
-        key authValues    : String(20) not null;
-            logicOperator : Integer    not null;
-            active        : Boolean;
-            toActivity    : association[1] to activity on toActivity.actId = actId; /*In*/
-            toTobjt       : association[1] to tobjt    on toTobjt.object = object; /*In*/
-
+    /*@@LAYOUT{"LAYOUTINFO":{"X":1145,"Y":937.5}}*/
+    entity LOGICAL_SYSTEMS {
+        key CUST_ID      : String(10) not null; /*ASSOCIATION*/
+        key SYS_ID       : String(60) not null;
+        key CLIENT_ID    : String(10) not null;
+            TO_CUSTOMERS : association[1] to CUSTOMERS on TO_CUSTOMERS.CUST_ID = CUST_ID; /*IN*/
     };
 
 
-    /*@@layout{"layoutInfo":{"x":-526,"y":460.5}}*/
-    entity tests {
-        key tstId                  : String(10) not null;
-            tstName                : String(60) not null;
-        key rsId                   : String(10) not null; /*Association*/
-            active                 : Boolean;
-            description            : String(1000);
-            owner                  : String(60) not null; /*Association*/
-            workflowFlag           : Boolean;
-            toRuleSet              : association[1]    to ruleSet              on toRuleSet.rsId = rsId; /*In*/
-            toUsers                : association[1]    to users                on toUsers.userId = owner; /*In*/
-            toTestActivity         : association[0..*] to testActivity         on toTestActivity.tstId = tstId; /*Out*/
-            toRiskTest             : association[0..*] to riskTest             on toRiskTest.tstId = tstId; /*Out*/
-            toTestsBusinessControl : association[0..*] to testsBusinessControl on toTestsBusinessControl.tstId = tstId; /*Out*/
+    /*@@LAYOUT{"LAYOUTINFO":{"X":72,"Y":813.5}}*/
+    entity USERS {
+        key CUST_ID                     : String(10) not null; /*ASSOCIATION*/
+        key USER_ID                     : String(60) not null;
+            FIRST_NAME                  : String(60) not null;
+            LAST_NAME                   : String(60) not null;
+            EMAIL                       : String(60) not null;
+            START_DATE                  : String(60);
+            END_DATE                    : String(60);
+            TIME_ZONE                   : String(10);
+            ADMIN_ACCESS                : Boolean;
+            TO_CUSTOMERS                : association[1]    to CUSTOMERS        on TO_CUSTOMERS.CUST_ID = CUST_ID; /*IN*/
+            TO_RULE_SET                 : association[0..*] to RULE_SET         on TO_RULE_SET.OWNER = USER_ID; /*OUT*/
+            TO_ACTIVITY                 : association[0..*] to ACTIVITY         on TO_ACTIVITY.OWNER = USER_ID; /*OUT*/
+            TO_TESTS                    : association[0..*] to TESTS            on TO_TESTS.OWNER = USER_ID; /*OUT*/
+            TO_BUSINESS_CONTROL_OWNER   : association[0..*] to BUSINESS_CONTROL on TO_BUSINESS_CONTROL_OWNER.OWNER = USER_ID; /*OUT*/
+            TO_BUSINESS_CONTROL_MONITOR : association[0..*] to BUSINESS_CONTROL on TO_BUSINESS_CONTROL_MONITOR.MONITOR = USER_ID; /*OUT*/
     };
 
-    /*@@layout{"layoutInfo":{"x":-533,"y":221.5}}*/
-    entity testActivity {
-        key tstId      : String(10) not null; /*Association*/
-        key actId      : String(10) not null; /*Association*/
-            toTests    : association[1] to tests    on toTests.tstId = tstId; /*In*/
-            toActivity : association[1] to activity on toActivity.actId = actId; /*In*/
+    /*@@LAYOUT{"LAYOUTINFO":{"X":33,"Y":9.5}}*/
+    entity RULE_SET {
+        key CUST_ID             : String(10) not null; /*ASSOCIATION*/
+        key RS_ID               : String(10) not null;
+            RS_NAME             : String(60) not null;
+            DESCRIPTION         : LargeString;
+            ACTIVE              : Boolean;
+            GLOBAL_OR_CUSTOMER  : String(60) not null;
+            OWNER               : String(60) not null; /*ASSOCIATION*/
+            WORKFLOW_FLAG       : Boolean;
+            TO_CUSTOMER         : association[1]    to CUSTOMERS        on TO_CUSTOMER.CUST_ID = CUST_ID; /*IN*/
+            TO_USERS            : association[1]    to USERS            on TO_USERS.USER_ID = OWNER; /*IN*/
+            TO_ACTIVITY         : association[0..*] to ACTIVITY         on TO_ACTIVITY.RS_ID = RS_ID; /*OUT*/
+            TO_TESTS            : association[0..*] to TESTS            on TO_TESTS.RS_ID = RS_ID; /*OUT*/
+            TO_RISKS            : association[0..*] to RISKS            on TO_RISKS.RS_ID = RS_ID; /*OUT*/
+            TO_RISK_RATING      : association[0..*] to RISK_RATING      on TO_RISK_RATING.RS_ID = RS_ID; /*OUT*/
+            TO_RISK_TEST        : association[0..*] to RISK_TEST        on TO_RISK_TEST.RS_ID = RS_ID; /*OUT*/
+            TO_BUSINESS_CONTROL : association[0..*] to BUSINESS_CONTROL on TO_BUSINESS_CONTROL.RS_ID = RS_ID; /*OUT*/
 
     };
 
-    /*@@layout{"layoutInfo":{"x":186,"y":-338.5}}*/
-    entity risks {
-        key riskId       : String(10) not null;
-        key rsId         : String(10) not null; /*Association*/
-            riskName     : String(60) not null;
-            riskRating   : String(60) /*not null*/; /*add back after values confirmed*/ /*Is this required?*/
-            riskCat      : String(60) /*not null*/; /*add back after values confirmed*/ /*Is this required?*/
-            workflowFlag : Boolean;
-            toRuleSet    : association[1] to ruleSet on toRuleSet.rsId=rsId; /*In*/
-            toRiskTest	:association[1] to riskTest on toRiskTest.riskId=riskId; /*Out*/
+    /*@@LAYOUT{"LAYOUTINFO":{"X":422,"Y":329.5}}*/
+    entity ACTIVITY {
+        key ACT_ID           : String(10) not null;
+            ACT_NAME         : String(60) not null;
+            RS_ID            : String(10) not null; /*ASSOCIATION*/
+            ACTIVE           : Boolean;
+            SEVERITY         : String(60) not null;
+            MODULE_ID        : String(10) not null; /*ASSOCIATION*/
+            SUB_MODULE_ID    : String(10); /*ASSOCIATION*/
+            OWNER            : String(60); /*ASSOCIATION*/
+            PROCESS_ID       : String(10); /*ASSOCIATION*/
+            SUB_PROCESS_ID   : String(10); /*ASSOCIATION*/
+            WORKFLOW_FLAG    : Boolean;
+            TO_RULE_SET      : association[1]    to RULE_SET      on TO_RULE_SET.RS_ID = RS_ID; /*IN*/
+            TO_MODULE        : association[1]    to MODULE        on TO_MODULE.MODULE_ID = MODULE_ID; /*IN*/
+            TO_SUB_MODULE    : association[1]    to SUB_MODULE    on TO_SUB_MODULE.SUB_MODULE_ID = SUB_MODULE_ID; /*IN*/
+            TO_USERS         : association[1]    to USERS         on TO_USERS.USER_ID = OWNER; /*IN*/
+            TO_PROCESSES     : association[1]    to PROCESSES     on TO_PROCESSES.PROCESS_ID = PROCESS_ID; /*IN*/
+            TO_SUB_PROCESSES : association[1]    to SUB_PROCESSES on TO_SUB_PROCESSES.SUB_PROCESS_ID = SUB_PROCESS_ID; /*IN*/
+            TO_ACT_TCODE     : association[0..*] to ACT_TCODE     on TO_ACT_TCODE.ACT_ID = ACT_ID; /*OUT*/
+            TO_ACT_AUTH      : association[0..*] to ACT_AUTH      on TO_ACT_AUTH.ACT_ID = ACT_ID; /*OUT*/
+            TO_TEST_ACTIVITY : association[0..*] to TEST_ACTIVITY on TO_TEST_ACTIVITY.ACT_ID = ACT_ID; /*OUT*/
     };
 
-    /*@@layout{"layoutInfo":{"x":-733,"y":-73.5}}*/
-    entity riskRating {
-        key riskRatingId              : String(10) not null; /*Association*/
-        key rsId                      : String(10) not null; /*Association*/
-            consequence               : Integer    not null;
-            likelihood                : Integer    not null;
-            cXl                       : Integer    not null;
-            cl                        : Integer;
-            defaultMatrixRating       : String(20);
-            range                     : Integer;
-            defaultRiskClassification : String(10);
-            defaultRiskRange          : String(20);
-            toRuleSet                 : association[1]    to ruleSet  on toRuleSet.rsId = rsId; /*In*/
-            toRiskTest                : association[0..*] to riskTest on toRiskTest.riskRatingId = riskRatingId; /*Out*/
+    /*@@LAYOUT{"LAYOUTINFO":{"X":877,"Y":264.5}}*/
+    entity ACT_TCODE {
+        key ACT_ID       : String(10); /*ASSOCIATION*/
+            ACTIVE       : Boolean;
+        key TCODE        : String(20); /*ASSOCIATION*/
+        key GROUP_NUMBER : Integer not null;
+            TO_ACTIVITY  : association[1] to ACTIVITY on TO_ACTIVITY.ACT_ID = ACT_ID; /*IN*/
+            TO_TSTC      : association[1] to TSTC     on TO_TSTC.TCODE = TCODE; /*IN*/
     };
 
-    /*@@layout{"layoutInfo":{"x":-291,"y":-388.5}}*/
-    entity riskTest {
-        key rsId                     : String(10) not null; /*Association*/
-        key tstId                    : String(10) not null; /*Association*/
-        key riskId	:String(10) not null;/*Association*/
-        key riskRatingId             : String(10) not null; /*Association*/
-            annualisedLossExpectancy : Decimal(15, 2);
-            estimatedAnnualisedLoss  : Decimal(15, 2);
-            aleProbability           : Decimal(15, 10);
-            bestCaseRiskEventImpact  : Decimal(15, 2);
-            expectedRiskEventImpact  : Decimal(15, 2);
-            worstCaseRiskEventImpact : Decimal(15, 2);
-            bestCaseRiskEventFreq    : Decimal(15, 2);
-            expectedRiskEventFreq    : Decimal(15, 2);
-            worstCaseRiskEventFreq   : Decimal(15, 2);
-            monteCarloImpact         : Decimal(15, 2);
-            monteCarloFreq           : Decimal(15, 2);
-            deterministic            : Decimal(15, 2);
-            monteCarloOutput         : Decimal(15, 2);
-            toRuleSet                : association[1] to ruleSet    on toRuleSet.rsId = rsId; /*In*/
-            toTests                  : association[1] to tests      on toTests.tstId = tstId; /*In*/
-            toRisks	:association[1] to risks on toRisks.riskId=riskId; /*In*/
-            toRiskRating             : association[1] to riskRating on toRiskRating.riskRatingId = riskRatingId; /*In*/
+    /*@@LAYOUT{"LAYOUTINFO":{"X":927,"Y":511.5}}*/
+    entity ACT_AUTH {
+        key ACT_ID          : String(10) not null; /*ASSOCIATION*/
+        key GROUP_NUMBER    : Integer    not null;
+        key OBJECT          : String(60) not null; /*ASSOCIATION*/
+        key AUTH_FIELD      : String(20) not null;
+        key AUTH_VALUES_VON : String(20) not null;
+            AUTH_VALUES_BIS : String(20);
+            LOGIC_OPERATOR  : Integer    not null;
+            ACTIVE          : Boolean;
+            TO_ACTIVITY     : association[1] to ACTIVITY on TO_ACTIVITY.ACT_ID = ACT_ID; /*IN*/
+            TO_TOBJT        : association[1] to TOBJT    on TO_TOBJT.OBJECT = OBJECT; /*IN*/
+
     };
 
-    /*@@layout{"layoutInfo":{"x":-374,"y":957.5}}*/
-    entity businessControl {
-        key bcId                   : String(10) not null;
-        key rsId                   : String(10) not null; /*Association*/
-            bcName                 : String(60) not null;
-            active                 : Boolean;
-            type                   : String(60) not null;
-            program                : String(1000);
-            frequency              : String(60) not null;
-            owner                  : String(60) not null; /*Association*/
-            processId              : String(10) not null; /*Association*/
-            subProcessId           : String(10) not null; /*Association*/
-            description            : String(1000);
-            variant                : String(60);
-            monitor                : String(60) not null; /*Association*/
-            workflowFlag           : Boolean;
-            toRuleSet              : association[1]    to ruleSet              on toRuleSet.rsId = rsId; /*In*/
-            toUsersOwner           : association[1]    to users                on toUsersOwner.userId = owner; /*In*/
-            toProcesses            : association[1]    to processes            on toProcesses.processId = processId; /*In*/
-            toSubProcesses         : association[1]    to subProcesses         on toSubProcesses.subProcessId = subProcessId; /*In*/
-            toUsersMonitor         : association[1]    to users                on toUsersMonitor.userId = monitor; /*In*/
-            toTestsBusinessControl : association[0..*] to testsBusinessControl on toTestsBusinessControl.bcId = bcId; /*Out*/
+
+    /*@@LAYOUT{"LAYOUTINFO":{"X":-526,"Y":460.5}}*/
+    entity TESTS {
+        key TST_ID                    : String(10) not null;
+            TST_NAME                  : String(60) not null;
+        key RS_ID                     : String(10) not null; /*ASSOCIATION*/
+            ACTIVE                    : Boolean;
+            DESCRIPTION               : String(1000);
+            OWNER                     : String(60) not null; /*ASSOCIATION*/
+            WORKFLOW_FLAG             : Boolean;
+            TO_RULE_SET               : association[1]    to RULE_SET               on TO_RULE_SET.RS_ID = RS_ID; /*IN*/
+            TO_USERS                  : association[1]    to USERS                  on TO_USERS.USER_ID = OWNER; /*IN*/
+            TO_TEST_ACTIVITY          : association[0..*] to TEST_ACTIVITY          on TO_TEST_ACTIVITY.TST_ID = TST_ID; /*OUT*/
+            TO_RISK_TEST              : association[0..*] to RISK_TEST              on TO_RISK_TEST.TST_ID = TST_ID; /*OUT*/
+            TO_TESTS_BUSINESS_CONTROL : association[0..*] to TESTS_BUSINESS_CONTROL on TO_TESTS_BUSINESS_CONTROL.TST_ID = TST_ID; /*OUT*/
     };
 
-    /*@@layout{"layoutInfo":{"x":-789,"y":882.5}}*/
-    entity testsBusinessControl {
-        key tstId             : String(10); /*Association*/
-        key bcId              : String(10); /*Association*/
-            toTests           : association[1] to tests           on toTests.tstId = tstId; /*In*/
-            toBusinessControl : association[1] to businessControl on toBusinessControl.bcId = bcId; /*In*/
+    /*@@LAYOUT{"LAYOUTINFO":{"X":-533,"Y":221.5}}*/
+    entity TEST_ACTIVITY {
+        key TST_ID      : String(10) not null; /*ASSOCIATION*/
+        key ACT_ID      : String(10) not null; /*ASSOCIATION*/
+            TO_TESTS    : association[1] to TESTS    on TO_TESTS.TST_ID = TST_ID; /*IN*/
+            TO_ACTIVITY : association[1] to ACTIVITY on TO_ACTIVITY.ACT_ID = ACT_ID; /*IN*/
+
     };
-	
-	    /*@@layout{"layoutInfo":{"x":-789,"y":882.5}}*/
+
+    /*@@LAYOUT{"LAYOUTINFO":{"X":186,"Y":-338.5}}*/
+    entity RISKS {
+        key RISK_ID       : String(10) not null;
+        key RS_ID         : String(10) not null; /*ASSOCIATION*/
+            RISK_NAME     : String(60) not null;
+            RISK_RATING   : String(60) /*NOT NULL*/; /*ADD BACK AFTER VALUES CONFIRMED*/ /*IS THIS REQUIRED?*/
+            RISK_CAT      : String(60) /*NOT NULL*/; /*ADD BACK AFTER VALUES CONFIRMED*/ /*IS THIS REQUIRED?*/
+            WORKFLOW_FLAG : Boolean;
+            TO_RULE_SET   : association[1] to RULE_SET  on TO_RULE_SET.RS_ID = RS_ID; /*IN*/
+            TO_RISK_TEST  : association[1] to RISK_TEST on TO_RISK_TEST.RISK_ID = RISK_ID; /*OUT*/
+    };
+
+    /*@@LAYOUT{"LAYOUTINFO":{"X":-733,"Y":-73.5}}*/
+    entity RISK_RATING {
+        key RISK_RATING_ID              : String(10) not null; /*ASSOCIATION*/
+        key RS_ID                       : String(10) not null; /*ASSOCIATION*/
+            CONSEQUENCE                 : Integer    not null;
+            LIKELIHOOD                  : Integer    not null;
+            C_X_L                       : Integer    not null;
+            CL                          : Integer;
+            DEFAULT_MATRIX_RATING       : String(20);
+            RANGE                       : Integer;
+            DEFAULT_RISK_CLASSIFICATION : String(10);
+            DEFAULT_RISK_RANGE          : String(20);
+            TO_RULE_SET                 : association[1]    to RULE_SET  on TO_RULE_SET.RS_ID = RS_ID; /*IN*/
+            TO_RISK_TEST                : association[0..*] to RISK_TEST on TO_RISK_TEST.RISK_RATING_ID = RISK_RATING_ID; /*OUT*/
+    };
+
+    /*@@LAYOUT{"LAYOUTINFO":{"X":-291,"Y":-388.5}}*/
+    entity RISK_TEST {
+        key RS_ID                        : String(10) not null; /*ASSOCIATION*/
+        key TST_ID                       : String(10) not null; /*ASSOCIATION*/
+        key RISK_ID                      : String(10) not null; /*ASSOCIATION*/
+        key RISK_RATING_ID               : String(10) not null; /*ASSOCIATION*/
+            ANNUALISED_LOSS_EXPECTANCY   : Decimal(15, 2);
+            ESTIMATED_ANNUALISED_LOSS    : Decimal(15, 2);
+            ALE_PROBABILITY              : Decimal(15, 10);
+            BEST_CASE_RISK_EVENT_IMPACT  : Decimal(15, 2);
+            EXPECTED_RISK_EVENT_IMPACT   : Decimal(15, 2);
+            WORST_CASE_RISK_EVENT_IMPACT : Decimal(15, 2);
+            BEST_CASE_RISK_EVENT_FREQ    : Decimal(15, 2);
+            EXPECTED_RISK_EVENT_FREQ     : Decimal(15, 2);
+            WORST_CASE_RISK_EVENT_FREQ   : Decimal(15, 2);
+            MONTECARLO_IMPACT            : Decimal(15, 2);
+            MONTECARLO_FREQ              : Decimal(15, 2);
+            DETERMINISTIC                : Decimal(15, 2);
+            MONTECARLO_OUTPUT            : Decimal(15, 2);
+            TO_RULE_SET                  : association[1] to RULE_SET    on TO_RULE_SET.RS_ID = RS_ID; /*IN*/
+            TO_TESTS                     : association[1] to TESTS       on TO_TESTS.TST_ID = TST_ID; /*IN*/
+            TO_RISKS                     : association[1] to RISKS       on TO_RISKS.RISK_ID = RISK_ID; /*IN*/
+            TO_RISK_RATING               : association[1] to RISK_RATING on TO_RISK_RATING.RISK_RATING_ID = RISK_RATING_ID; /*IN*/
+    };
+
+    /*@@LAYOUT{"LAYOUTINFO":{"X":-374,"Y":957.5}}*/
+    entity BUSINESS_CONTROL {
+        key BC_ID                     : String(10) not null;
+        key RS_ID                     : String(10) not null; /*ASSOCIATION*/
+            BC_NAME                   : String(60) not null;
+            ACTIVE                    : Boolean;
+            TYPE                      : String(60) not null;
+            PROGRAM                   : String(1000);
+            FREQUENCY                 : String(60) not null;
+            OWNER                     : String(60) not null; /*ASSOCIATION*/
+            PROCESS_ID                : String(10) not null; /*ASSOCIATION*/
+            SUB_PROCESS_ID            : String(10) not null; /*ASSOCIATION*/
+            DESCRIPTION               : String(1000);
+            VARIANT                   : String(60);
+            MONITOR                   : String(60) not null; /*ASSOCIATION*/
+            WORKFLOW_FLAG             : Boolean;
+            TO_RULE_SET               : association[1]    to RULE_SET               on TO_RULE_SET.RS_ID = RS_ID; /*IN*/
+            TO_USERS_OWNER            : association[1]    to USERS                  on TO_USERS_OWNER.USER_ID = OWNER; /*IN*/
+            TO_PROCESSES              : association[1]    to PROCESSES              on TO_PROCESSES.PROCESS_ID = PROCESS_ID; /*IN*/
+            TO_SUB_PROCESSES          : association[1]    to SUB_PROCESSES          on TO_SUB_PROCESSES.SUB_PROCESS_ID = SUB_PROCESS_ID; /*IN*/
+            TO_USERS_MONITOR          : association[1]    to USERS                  on TO_USERS_MONITOR.USER_ID = MONITOR; /*IN*/
+            TO_TESTS_BUSINESS_CONTROL : association[0..*] to TESTS_BUSINESS_CONTROL on TO_TESTS_BUSINESS_CONTROL.BC_ID = BC_ID; /*OUT*/
+    };
+
+    /*@@LAYOUT{"LAYOUTINFO":{"X":-789,"Y":882.5}}*/
+    entity TESTS_BUSINESS_CONTROL {
+        key TST_ID              : String(10); /*ASSOCIATION*/
+        key BC_ID               : String(10); /*ASSOCIATION*/
+            TO_TESTS            : association[1] to TESTS            on TO_TESTS.TST_ID = TST_ID; /*IN*/
+            TO_BUSINESS_CONTROL : association[1] to BUSINESS_CONTROL on TO_BUSINESS_CONTROL.BC_ID = BC_ID; /*IN*/
+    };
+
+    /**@@LAYOUT{"LAYOUTINFO":{"X":-789,"Y":882.5}}*/
     entity UST12 {
-		MANDT		:Integer;
-		key OBJCT	:String(60);
-		key AUTH	:String(60);
-		AKTPS		:String(60);
-		Key FIELD		:String(60);
-		Key VON			:String(60);
-		BIS			:String(60);
-	};	
-};  
+        MANDT : Integer;
+        OBJCT : String(60);
+        AUTH  : String(60);
+        AKTPS : String(60);
+        FIELD : String(60);
+        VON   : String(60);
+        BIS   : String(60);
+    };
+
+    view UST12_CONVERT as
+        select from UST12 as A1
+        {
+            A1.OBJCT,
+            A1.AUTH,
+            A1.FIELD,
+            A1.VON,
+            replace("VON", '*', '%') "VON%",
+            A1.BIS
+        };
+
+    view ACT_AUTH_CONVERT as
+        select from ACT_AUTH as A2
+        {
+            A2.ACT_ID,
+            A2.GROUP_NUMBER,
+            A2.OBJECT,
+            A2.AUTH_FIELD,
+            A2.AUTH_VALUES_VON,
+            replace("AUTH_VALUES_VON", '*', '%') "AUTH_VALUES_VON%",
+            A2.AUTH_VALUES_BIS,
+            A2.LOGIC_OPERATOR
+        };
+
+    //------------------------------------------------------------------------------------------------------
+
+    view SCAN_P1_ALL_MATCHES as
+        select from UST12_CONVERT as A1
+        join (
+                    ACT_AUTH_CONVERT as A2
+        )                                  on
+                A1.FIELD = A2."AUTH_FIELD"
+            and A1.OBJCT = A2."OBJECT"
+        {
+            A1.OBJCT,
+            A1.AUTH,
+            A1.FIELD,
+            A1.VON,
+            A1."VON%",
+            A1.BIS,
+            A2.ACT_ID,
+            A2.GROUP_NUMBER,
+            A2.OBJECT,
+            A2.AUTH_FIELD,
+            A2.AUTH_VALUES_VON,
+            A2."AUTH_VALUES_VON%",
+            A2.AUTH_VALUES_BIS,
+            A2."LOGIC_OPERATOR"
+        }
+        where
+            (
+                (
+                    (A2.AUTH_VALUES_VON) between A1.VON and A1.BIS
+                )
+            )
+            or (
+                (
+                    (A1.VON)             between A2.AUTH_VALUES_VON and A2.AUTH_VALUES_BIS
+                )
+            )
+            or (
+                (
+                    A2.AUTH_VALUES_VON   =       A1.VON
+                )
+            )
+    union
+        select from UST12_CONVERT as A1
+        join (
+                    ACT_AUTH_CONVERT as A2
+        )                                  on
+                A1.FIELD = A2.AUTH_FIELD
+            and A1.OBJCT = A2.OBJECT
+        {
+            A1.OBJCT,
+            A1.AUTH,
+            A1.FIELD,
+            A1.VON,
+            A1."VON%",
+            A1.BIS,
+            A2.ACT_ID,
+            A2.GROUP_NUMBER,
+            A2.OBJECT,
+            A2.AUTH_FIELD,
+            A2.AUTH_VALUES_VON,
+            A2."AUTH_VALUES_VON%",
+            A2.AUTH_VALUES_BIS,
+            A2."LOGIC_OPERATOR"
+        }
+        where
+            (
+                (
+                    (A1.VON)             like '%*%'
+                )
+            )
+            and (
+                (
+                    A1.BIS               is   null
+                )
+            )
+            and (
+                (
+                    (A2.AUTH_VALUES_VON) like A1."VON%"
+                )
+            )
+            or (
+                (
+                    A1.VON               =    '*'
+                )
+            )
+    union
+        select from ACT_AUTH_CONVERT as A2
+        join (
+                    UST12_CONVERT as A1
+        )                                  on
+                A2.AUTH_FIELD = A1.FIELD
+            and A2.OBJECT     = A1.OBJCT
+        {
+            A1.OBJCT,
+            A1.AUTH,
+            A1.FIELD,
+            A1.VON,
+            A1."VON%",
+            A1.BIS,
+            A2.ACT_ID,
+            A2.GROUP_NUMBER,
+            A2.OBJECT,
+            A2.AUTH_FIELD,
+            A2.AUTH_VALUES_VON,
+            A2."AUTH_VALUES_VON%",
+            A2.AUTH_VALUES_BIS,
+            A2."LOGIC_OPERATOR"
+        }
+        where
+            (
+                (
+                    (A2.AUTH_VALUES_VON) like '%*%'
+                )
+            )
+            and (
+                (
+                    A2.AUTH_VALUES_BIS   is   null
+                )
+            )
+            and (
+                (
+                    (A1.VON)             like A2."AUTH_VALUES_VON%"
+                )
+            )
+            or (
+                (
+                    A2.AUTH_VALUES_VON   =    '*'
+                )
+            );
+
+    //------------------------------------------------------------------------------------------------------
+
+    view SCAN_P2_AUTH_AND_VALUE_COUNT as
+        select from ACT_AUTH as A2
+        {
+            A2.ACT_ID,
+            A2.GROUP_NUMBER,
+            A2.OBJECT,
+            A2.AUTH_FIELD,
+            count(A2.AUTH_VALUES_VON) as COUNT_OF_AUTH_VALUES,
+            A2.LOGIC_OPERATOR,
+            A2.ACTIVE
+        }
+        group by
+            A2.ACT_ID,
+            A2.GROUP_NUMBER,
+            A2.OBJECT,
+            A2.AUTH_FIELD,
+            A2.LOGIC_OPERATOR,
+            A2.ACTIVE
+        having
+            (
+                (
+                    (A2.LOGIC_OPERATOR) = '1'
+                )
+                and (
+                    (A2.ACTIVE)         = true
+                )
+            );
+
+    //------------------------------------------------------------------------------------------------------
+
+    view SCAN_P3_AND_VALUE_COUNT as
+        select from SCAN_P1_ALL_MATCHES as P1
+        {
+            P1.OBJCT,
+            P1.AUTH,
+            P1.FIELD,
+            P1.VON,
+            P1.BIS,
+            P1.ACT_ID,
+            P1.GROUP_NUMBER,
+            P1.OBJECT,
+            P1.AUTH_FIELD,
+            count(P1.AUTH_VALUES_VON) as COUNT_OF_AUTH_VALUES,
+            P1.LOGIC_OPERATOR
+        }
+        group by
+            P1.OBJCT,
+            P1.AUTH,
+            P1.FIELD,
+            P1.VON,
+            P1.BIS,
+            P1.ACT_ID,
+            P1.GROUP_NUMBER,
+            P1.OBJECT,
+            P1.AUTH_FIELD,
+            P1.LOGIC_OPERATOR
+        having
+            (
+                (
+                    (P1.LOGIC_OPERATOR) = 1
+                )
+            );
+
+    //------------------------------------------------------------------------------------------------------
+
+    view SCAN_P4_AND_VALUE_TRUE as
+        select from SCAN_P3_AND_VALUE_COUNT as P3
+        join (
+                    SCAN_P2_AUTH_AND_VALUE_COUNT as P2
+        )                                              on
+                P2.COUNT_OF_AUTH_VALUES = P3.COUNT_OF_AUTH_VALUES
+            and P2.AUTH_FIELD           = P3.AUTH_FIELD
+            and P2.OBJECT               = P3.OBJECT
+            and P2.GROUP_NUMBER         = P3.GROUP_NUMBER
+            and P2.ACT_ID               = P3.ACT_ID
+        {
+            P3.OBJCT,
+            P3.AUTH,
+            P3.FIELD,
+            P3.VON,
+            P3.BIS,
+            P3.ACT_ID,
+            P3.GROUP_NUMBER,
+            P3.OBJECT,
+            P3.AUTH_FIELD,
+            P2.COUNT_OF_AUTH_VALUES,
+            P3.LOGIC_OPERATOR
+        };
+
+    //------------------------------------------------------------------------------------------------------
+    view SCAN_P5_OR_VALUE_TRUE as
+        select from SCAN_P1_ALL_MATCHES as P1
+        {
+            P1.OBJCT,
+            P1.AUTH,
+            P1.FIELD,
+            P1.VON,
+            P1.BIS,
+            P1.ACT_ID,
+            P1.GROUP_NUMBER,
+            P1.OBJECT,
+            P1.AUTH_FIELD,
+            P1.AUTH_VALUES_VON,
+            P1.AUTH_VALUES_BIS,
+            P1.LOGIC_OPERATOR
+        }
+        where
+            (
+                (
+                    (P1.LOGIC_OPERATOR) = '2'
+                )
+            );
+
+    //------------------------------------------------------------------------------------------------------
+
+    view SCAN_P6_UNION_VALUE_TRUE as
+        select from SCAN_P3_AND_VALUE_COUNT as P3
+        join (
+                    SCAN_P2_AUTH_AND_VALUE_COUNT as P2
+        )                                              on
+                P2.COUNT_OF_AUTH_VALUES = P3.COUNT_OF_AUTH_VALUES
+            and P2.AUTH_FIELD           = P3.AUTH_FIELD
+            and P2.OBJECT               = P3.OBJECT
+            and P2.GROUP_NUMBER         = P3.GROUP_NUMBER
+            and P2.ACT_ID               = P3.ACT_ID
+        {
+            P3.OBJCT,
+            P3.AUTH,
+            P3.FIELD,
+            P3.VON,
+            P3.BIS,
+            P3.ACT_ID,
+            P3.GROUP_NUMBER,
+            P3.OBJECT,
+            P3.AUTH_FIELD,
+            P3.LOGIC_OPERATOR
+        }
+    union
+        select from SCAN_P1_ALL_MATCHES as P1
+        {
+            P1.OBJCT,
+            P1.AUTH,
+            P1.FIELD,
+            P1.VON,
+            P1.BIS,
+            P1.ACT_ID,
+            P1.GROUP_NUMBER,
+            P1.OBJECT,
+            P1.AUTH_FIELD,
+            P1.LOGIC_OPERATOR
+        }
+        where
+            (
+                (
+                    (P1.LOGIC_OPERATOR) = '2'
+                )
+            );
+
+    //------------------------------------------------------------------------------------------------------
+
+    view SCAN_P7_AUTH_FIELD as
+        select from ACT_AUTH distinct
+        {
+            ACT_AUTH.ACT_ID,
+            ACT_AUTH.GROUP_NUMBER,
+            ACT_AUTH.OBJECT,
+            ACT_AUTH.AUTH_FIELD,
+            ACT_AUTH.LOGIC_OPERATOR,
+            ACT_AUTH.ACTIVE
+        }
+        where
+            (
+                (
+                    (ACT_AUTH.ACTIVE) = true
+                )
+            );
+
+    //------------------------------------------------------------------------------------------------------
+
+    view SCAN_P8_AUTH_FIELD_COUNT as
+        select from SCAN_P7_AUTH_FIELD as P7
+        {
+            P7.ACT_ID,
+            P7.GROUP_NUMBER,
+            P7.OBJECT,
+            count(P7.AUTH_FIELD) as COUNT_OF_AUTH_FIELD,
+            P7.ACTIVE
+        }
+        group by
+            P7.ACT_ID,
+            P7.GROUP_NUMBER,
+            P7.OBJECT,
+            P7.ACTIVE;
+
+    //------------------------------------------------------------------------------------------------------
+	view SCAN_P9_MATCH_FIELD as 
+		select from SCAN_P6_UNION_VALUE_TRUE distinct
+		{
+		OBJCT      ,
+        AUTH       ,
+        FIELD      ,
+        ACT_ID      ,
+        GROUP_NUMBER,
+        OBJECT     ,
+        AUTH_FIELD
+		};
+    //------------------------------------------------------------------------------------------------------
+	view SCAN_P10_MATCH_FIELD_COUNT as
+		select from SCAN_P9_MATCH_FIELD as P9
+		{
+		P9.OBJCT      ,
+        P9.AUTH       ,
+        P9.ACT_ID      ,
+        P9.GROUP_NUMBER,
+        P9.OBJECT     ,
+        COUNT(P9.AUTH_FIELD) AS COUNT_OF_AUTH_FIELD
+		}
+	GROUP BY
+		P9.OBJCT      ,
+        P9.AUTH       ,
+        P9.ACT_ID      ,
+        P9.GROUP_NUMBER,
+        P9.OBJECT;
+
+    //------------------------------------------------------------------------------------------------------
+    view SCAN_P11_MATCH_FIELD_TRUE as
+    	select from SCAN_P10_MATCH_FIELD_COUNT as P10
+    	        join (
+                    SCAN_P8_AUTH_FIELD_COUNT as P8
+        )                                              on
+                P8.COUNT_OF_AUTH_FIELD = P10.COUNT_OF_AUTH_FIELD
+            and P8.OBJECT = P10.OBJECT
+            and P8.GROUP_NUMBER = P10.GROUP_NUMBER
+            and P8.ACT_ID = P10.ACT_ID
+    	{
+    	P10.OBJCT      ,
+        P10.AUTH       ,
+        P10.ACT_ID      ,
+        P10.GROUP_NUMBER,
+        P10.OBJECT     ,
+        P10.COUNT_OF_AUTH_FIELD
+    	};
+    //------------------------------------------------------------------------------------------------------
+    
+    //------------------------------------------------------------------------------------------------------
+};

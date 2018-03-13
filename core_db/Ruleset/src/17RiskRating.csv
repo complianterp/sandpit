@@ -1,4 +1,4 @@
-riskRatingId,rsId,consequence,likelihood,cXl,cl,defaultMatrixRating,range,defaultRiskClassification,defaultRiskRange
+RISK_RATING_ID,RS_ID,CONSEQUENCE,LIKELIHOOD,C_X_L,CL,DEFAULT_MATRIX_RATING,RANGE,DEFAULT_RISK_CLASSIFICATION,DEFAULT_RISK_RANGE
 01,RS0001,1,1,1,11,Low 01,01,Low,Low 01
 02,RS0001,1,1,1,11,Low 02,02,Low,Low 02
 03,RS0001,1,1,1,11,Low 03,03,Low,Low 03

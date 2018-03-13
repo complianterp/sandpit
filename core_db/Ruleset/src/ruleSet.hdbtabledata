@@ -1,7 +1,7 @@
 {
  "format_version": 1,
  "imports": [{
-  "target_table": "sandpit.Rule_Set::ruleSet.module",
+  "target_table": "sandpit.Rule_Set::ruleSet.MODULE",
   "source_data": {
    "data_type": "CSV",
    "file_name": "sandpit.Rule_Set::01Module.csv",
@@ -11,12 +11,12 @@
     "delimiter": ","
    }
   },
-  "import_settings": {"import_columns": ["moduleId", "moduleName"]},
-  "column_mappings": {"moduleId": 1, "moduleName": 2}},
+  "import_settings": {"import_columns": ["MODULE_ID", "MODULE_NAME"]},
+  "column_mappings": {"MODULE_ID": 1, "MODULE_NAME": 2}},
 	
  
  {
-  "target_table": "sandpit.Rule_Set::ruleSet.subModule",
+  "target_table": "sandpit.Rule_Set::ruleSet.SUB_MODULE",
   "source_data": {
    "data_type": "CSV",
    "file_name": "sandpit.Rule_Set::02SubModule.csv",
@@ -26,12 +26,12 @@
     "delimiter": ","
    }
   },
-  "import_settings": {"import_columns": ["moduleId","subModuleId","subModuleName"]},
-  "column_mappings": {"moduleId": 1,"subModuleId": 2,"subModuleName": 3}
+  "import_settings": {"import_columns": ["MODULE_ID","SUB_MODULE_ID","SUB_MODULE_NAME"]},
+  "column_mappings": {"MODULE_ID": 1,"SUB_MODULE_ID": 2,"SUB_MODULE_NAME": 3}
  }, 
 
  {
-  "target_table": "sandpit.Rule_Set::ruleSet.processes",
+  "target_table": "sandpit.Rule_Set::ruleSet.PROCESSES",
   "source_data": {
    "data_type": "CSV",
    "file_name": "sandpit.Rule_Set::03Processes.csv",
@@ -41,13 +41,13 @@
     "delimiter": ","
    }
   },
-  "import_settings": {"import_columns": ["processId","processName"]},
-  "column_mappings": {"processId": 1,"processName": 2}
+  "import_settings": {"import_columns": ["PROCESS_ID","PROCESS_NAME"]},
+  "column_mappings": {"PROCESS_ID": 1,"PROCESS_NAME": 2}
  }, 
 
 
  {
-  "target_table": "sandpit.Rule_Set::ruleSet.subProcesses",
+  "target_table": "sandpit.Rule_Set::ruleSet.SUB_PROCESSES",
   "source_data": {
    "data_type": "CSV",
    "file_name": "sandpit.Rule_Set::04SubProcesses.csv",
@@ -57,13 +57,13 @@
     "delimiter": ","
    }
   },
-  "import_settings": {"import_columns": ["processId","subProcessId","subProcessName"]},
-  "column_mappings": {"processId": 1,"subProcessId": 2, "subProcessName": 3}
+  "import_settings": {"import_columns": ["PROCESS_ID","SUB_PROCESS_ID","SUB_PROCESS_NAME"]},
+  "column_mappings": {"PROCESS_ID": 1,"SUB_PROCESS_ID": 2, "SUB_PROCESS_NAME": 3}
  },
 
 
  {
-  "target_table": "sandpit.Rule_Set::ruleSet.tstc",
+  "target_table": "sandpit.Rule_Set::ruleSet.TSTC",
   "source_data": {
    "data_type": "CSV",
    "file_name": "sandpit.Rule_Set::05Tstc.csv",
@@ -73,13 +73,13 @@
     "delimiter": ","
    }
   },
-  "import_settings": {"import_columns": ["tcode","pgmna","dypno","menue","cinfo","arbgb","ttext"]},
-  "column_mappings": {"tcode": 1,"pgmna": 2, "dypno": 3,"menue": 4, "cinfo": 5,"arbgb": 6,"ttext": 7}
+  "import_settings": {"import_columns": ["TCODE","PGMNA","DYPNO","MENUE","CINFO","ARBGB","TTEXT"]},
+  "column_mappings": {"TCODE": 1,"PGMNA": 2, "DYPNO": 3,"MENUE": 4, "CINFO": 5,"ARBGB": 6,"TTEXT": 7}
  },
 
 
  {
-  "target_table": "sandpit.Rule_Set::ruleSet.tobjt",
+  "target_table": "sandpit.Rule_Set::ruleSet.TOBJT",
   "source_data": {
    "data_type": "CSV",
    "file_name": "sandpit.Rule_Set::06Tobjt.csv",
@@ -89,13 +89,13 @@
     "delimiter": ","
    }
   },
-  "import_settings": {"import_columns": ["langu","object","ttext"]},
-  "column_mappings": {"langu": 1,"object": 2, "ttext": 3}
+  "import_settings": {"import_columns": ["LANGU","OBJECT","TTEXT"]},
+  "column_mappings": {"LANGU": 1,"OBJECT": 2, "TTEXT": 3}
  },
 
 
  {
-  "target_table": "sandpit.Rule_Set::ruleSet.customers",
+  "target_table": "sandpit.Rule_Set::ruleSet.CUSTOMERS",
   "source_data": {
    "data_type": "CSV",
    "file_name": "sandpit.Rule_Set::07Customers.csv",
@@ -105,13 +105,13 @@
     "delimiter": ","
    }
   },
-  "import_settings": {"import_columns": ["custId","companyName"]},
-  "column_mappings": {"tcode": 1,"pgmna": 2}
+  "import_settings": {"import_columns": ["CUST_ID","COMPANY_NAME"]},
+  "column_mappings": {"CUST_ID": 1,"COMPANY_NAME": 2}
  },
 
 
  {
-  "target_table": "sandpit.Rule_Set::ruleSet.logicalSystems",
+  "target_table": "sandpit.Rule_Set::ruleSet.LOGICAL_SYSTEMS",
   "source_data": {
    "data_type": "CSV",
    "file_name": "sandpit.Rule_Set::08LogicalSystems.csv",
@@ -121,13 +121,13 @@
     "delimiter": ","
    }
   },
-  "import_settings": {"import_columns": ["custId","sysId","clientId"]},
-  "column_mappings": {"custId": 1,"sysId": 2,"clientId": 3}
+  "import_settings": {"import_columns": ["CUST_ID","SYS_ID","CLIENT_ID"]},
+  "column_mappings": {"CUST_ID": 1,"SYS_ID": 2,"CLIENT_ID": 3}
  },
 
 
  {
-  "target_table": "sandpit.Rule_Set::ruleSet.users",
+  "target_table": "sandpit.Rule_Set::ruleSet.USERS",
   "source_data": {
    "data_type": "CSV",
    "file_name": "sandpit.Rule_Set::09Users.csv",
@@ -137,13 +137,13 @@
     "delimiter": ","
    }
   },
-  "import_settings": {"import_columns": ["custId","userId","firstName","lastName","email","startDate","endDate","timeZone","adminAccess"]},
-  "column_mappings": {"custId": 1,"userId": 2,"firstName": 3,"lastName": 4,"email": 5,"startDate": 6,"endDate": 7,"timeZone": 8,"adminAccess": 9}
+  "import_settings": {"import_columns": ["CUST_ID","USER_ID","FIRST_NAME","LAST_NAME","EMAIL","START_DATE","END_DATE","TIME_ZONE","ADMIN_ACCESS"]},
+  "column_mappings": {"CUST_ID": 1,"USER_ID": 2,"FIRST_NAME": 3,"LAST_NAME": 4,"EMAIL": 5,"START_DATE": 6,"END_DATE": 7,"TIME_ZONE": 8,"ADMIN_ACCESS": 9}
  },
 
 
  {
-  "target_table": "sandpit.Rule_Set::ruleSet.ruleSet",
+  "target_table": "sandpit.Rule_Set::ruleSet.RULE_SET",
   "source_data": {
    "data_type": "CSV",
    "file_name": "sandpit.Rule_Set::10RuleSet.csv",
@@ -153,13 +153,13 @@
     "delimiter": ","
    }
   },
-  "import_settings": {"import_columns": ["custId","rsId","rsName","description","active","globalOrCustomer","owner","workflowFlag"]},
-  "column_mappings": {"custId": 1,"rsId": 2,"rsName": 3,"description": 4,"active": 5,"globalOrCustomer": 6,"owner": 7,"workflowFlag": 8}
+  "import_settings": {"import_columns": ["CUST_ID","RS_ID","RS_NAME","DESCRIPTION","ACTIVE","GLOBAL_OR_CUSTOMER","OWNER","WORKFLOW_FLAG"]},
+  "column_mappings": {"CUST_ID": 1,"RS_ID": 2,"RS_NAME": 3,"DESCRIPTION": 4,"ACTIVE": 5,"GLOBAL_OR_CUSTOMER": 6,"OWNER": 7,"WORKFLOW_FLAG": 8}
  },
 
 
  {
-  "target_table": "sandpit.Rule_Set::ruleSet.activity",
+  "target_table": "sandpit.Rule_Set::ruleSet.ACTIVITY",
   "source_data": {
    "data_type": "CSV",
    "file_name": "sandpit.Rule_Set::11Activity.csv",
@@ -169,11 +169,11 @@
     "delimiter": ","
    }
   },
-  "import_settings": {"import_columns": ["actId","actName","rsId","active","severity","moduleId","subModuleId","owner","processId","subProcessId","workflowFlag"]},
-  "column_mappings": {"actId": 1,"actName": 2,"rsId": 3,"active": 4,"severity": 5,"moduleId": 6,"subModuleId": 7,"owner": 8,"processId": 9,"subProcessId": 10,"workflowFlag": 11}
+  "import_settings": {"import_columns": ["ACT_ID","ACT_NAME","RS_ID","ACTIVE","SEVERITY","MODULE_ID","SUB_MODULE_ID","OWNER","PROCESS_ID","SUB_PROCESS_ID","WORKFLOW_FLAG"]},
+  "column_mappings": {"ACT_ID": 1,"ACT_NAME": 2,"RS_ID": 3,"ACTIVE": 4,"SEVERITY": 5,"MODULE_ID": 6,"SUB_MODULE_ID": 7,"OWNER": 8,"PROCESS_ID": 9,"SUB_PROCESS_ID": 10,"WORKFLOW_FLAG": 11}
  },
 {
-  "target_table": "sandpit.Rule_Set::ruleSet.actTcode",
+  "target_table": "sandpit.Rule_Set::ruleSet.ACT_TCODE",
   "source_data": {
    "data_type": "CSV",
    "file_name": "sandpit.Rule_Set::12ActTcode.csv",
@@ -183,13 +183,13 @@
     "delimiter": ","
    }
   },
-  "import_settings": {"import_columns": ["actId","active","tcode","groupNumber"]},
-  "column_mappings": {"actId": 1,"active": 2,"tcode": 3,"groupNumber": 4}
+  "import_settings": {"import_columns": ["ACT_ID","ACTIVE","TCODE","GROUP_NUMBER"]},
+  "column_mappings": {"ACT_ID": 1,"ACTIVE": 2,"TCODE": 3,"GROUP_NUMBER": 4}
  }, 
 
 
  {
-  "target_table": "sandpit.Rule_Set::ruleSet.actAuth",
+  "target_table": "sandpit.Rule_Set::ruleSet.ACT_AUTH",
   "source_data": {
    "data_type": "CSV",
    "file_name": "sandpit.Rule_Set::13ActAuth.csv",
@@ -199,13 +199,13 @@
     "delimiter": ","
    }
   },
-  "import_settings": {"import_columns": ["actId","groupNumber","object","authField","authValues","logicOperator","active"]},
-  "column_mappings": {"actId": 1,"groupNumber": 2,"object": 3,"authField": 4,"authValues": 5,"logicOperator": 6,"active": 7}
+  "import_settings": {"import_columns": ["ACT_ID","GROUP_NUMBER","OBJECT","AUTH_FIELD","AUTH_VALUES_VON","AUTH_VALUES_BIS","LOGIC_OPERATOR","ACTIVE"]},
+  "column_mappings": {"ACT_ID": 1,"GROUP_NUMBER": 2,"OBJECT": 3,"AUTH_FIELD": 4,"AUTH_VALUES_VON": 5,"AUTH_VALUES_BIS": 6,"LOGIC_OPERATOR": 7,"ACTIVE": 8}
  }, 
 
 
  {
-  "target_table": "sandpit.Rule_Set::ruleSet.tests",
+  "target_table": "sandpit.Rule_Set::ruleSet.TESTS",
   "source_data": {
    "data_type": "CSV",
    "file_name": "sandpit.Rule_Set::14Tests.csv",
@@ -215,14 +215,12 @@
     "delimiter": ","
    }
   },
-  "import_settings": {"import_columns": ["tstId","tstName","rsId","active","description","owner","workflowFlag"]},
-  "column_mappings": {"tstId": 1,"tstName": 2,"rsId": 3,"active": 4,"description": 5,"owner": 6,"workflowFlag": 7}
+  "import_settings": {"import_columns": ["TST_ID","TST_NAME","RS_ID","ACTIVE","DESCRIPTION","OWNER","WORKFLOW_FLAG"]},
+  "column_mappings": {"TST_ID": 1,"TST_NAME": 2,"RS_ID": 3,"ACTIVE": 4,"DESCRIPTION": 5,"OWNER": 6,"WORKFLOW_FLAG": 7}
  }, 
 
-
-
  {
-  "target_table": "sandpit.Rule_Set::ruleSet.testActivity",
+  "target_table": "sandpit.Rule_Set::ruleSet.TEST_ACTIVITY",
   "source_data": {
    "data_type": "CSV",
    "file_name": "sandpit.Rule_Set::15TestActivity.csv",
@@ -232,14 +230,14 @@
     "delimiter": ","
    }
   },
-  "import_settings": {"import_columns": ["tstId","actId"]},
-  "column_mappings": {"tstId": 1,"actId": 2}
+  "import_settings": {"import_columns": ["TST_ID","ACT_ID"]},
+  "column_mappings": {"TST_ID": 1,"ACT_ID": 2}
  }, 
 
 
 
  {
-  "target_table": "sandpit.Rule_Set::ruleSet.risks",
+  "target_table": "sandpit.Rule_Set::ruleSet.RISKS",
   "source_data": {
    "data_type": "CSV",
    "file_name": "sandpit.Rule_Set::16Risks.csv",
@@ -249,13 +247,13 @@
     "delimiter": ","
    }
   },
-  "import_settings": {"import_columns": ["riskId","rsId","riskName","riskRating","riskCat","workflowFlag"]},
-  "column_mappings": {"riskId": 1,"rsId": 2,"riskName": 3,"riskRating": 4,"riskCat": 5,"workflowFlag": 6}
+  "import_settings": {"import_columns": ["RISK_ID","RS_ID","RISK_NAME","RISK_RATING","RISK_CAT","WORKFLOW_FLAG"]},
+  "column_mappings": {"RISK_ID": 1,"RS_ID": 2,"RISK_NAME": 3,"RISK_RATING": 4,"RISK_CAT": 5,"WORKFLOW_FLAG": 6}
  }, 
 
 
   {
-  "target_table": "sandpit.Rule_Set::ruleSet.riskRating",
+  "target_table": "sandpit.Rule_Set::ruleSet.RISK_RATING",
   "source_data": {
    "data_type": "CSV",
    "file_name": "sandpit.Rule_Set::17RiskRating.csv",
@@ -265,13 +263,13 @@
     "delimiter": ","
    }
   },
-  "import_settings": {"import_columns": ["riskRatingId","rsId","consequence","likelihood","cXl","cl","defaultMatrixRating","range","defaultRiskClassification","defaultRiskRange"]},
-  "column_mappings": {"riskRatingId": 1,"rsId": 2,"consequence": 3,"likelihood": 4,"cXl": 5,"cl": 6,"defaultMatrixRating": 7,"range": 8,"defaultRiskClassification": 9,"defaultRiskRange": 10}
+  "import_settings": {"import_columns": ["RISK_RATING_ID","RS_ID","CONSEQUENCE","LIKELIHOOD","C_X_L","CL","DEFAULT_MATRIX_RATING","RANGE","DEFAULT_RISK_CLASSIFICATION","DEFAULT_RISK_RANGE"]},
+  "column_mappings": {"RISK_RATING_ID": 1,"RS_ID": 2,"CONSEQUENCE": 3,"LIKELIHOOD": 4,"C_X_L": 5,"CL": 6,"DEFAULT_MATRIX_RATING": 7,"RANGE": 8,"DEFAULT_RISK_CLASSIFICATION": 9,"DEFAULT_RISK_RANGE": 10}
  },
 
 
  {
-  "target_table": "sandpit.Rule_Set::ruleSet.riskTest",
+  "target_table": "sandpit.Rule_Set::ruleSet.RISK_TEST",
   "source_data": {
    "data_type": "CSV",
    "file_name": "sandpit.Rule_Set::18RiskTest.csv",
@@ -281,13 +279,12 @@
     "delimiter": ","
    }
   },
-  "import_settings": {"import_columns": ["rsId","tstId","riskId","riskRatingId","annualisedLossExpectancy","estimatedAnnualisedLoss","aleProbability","bestCaseRiskEventImpact","expectedRiskEventImpact","worstCaseRiskEventImpact","bestCaseRiskEventFreq","expectedRiskEventFreq","worstCaseRiskEventFreq","monteCarloImpact","monteCarloFreq","deterministic","monteCarloOutput"]},
-  "column_mappings": {"rsId": 1,"tstId": 2,"riskId": 3,"riskRatingId": 4,"annualisedLossExpectancy": 5,"estimatedAnnualisedLoss": 6,"aleProbability": 7,"bestCaseRiskEventImpact": 8,"expectedRiskEventImpact": 9,"worstCaseRiskEventImpact": 10,"bestCaseRiskEventFreq": 11,"expectedRiskEventFreq": 12,"worstCaseRiskEventFreq": 13,"monteCarloImpact": 14,"monteCarloFreq": 15,"deterministic": 16,"monteCarloOutput": 17}
+  "import_settings": {"import_columns": ["RS_ID","TST_ID","RISK_ID","RISK_RATING_ID","ANNUALISED_LOSS_EXPECTANCY","ESTIMATED_ANNUALISED_LOSS","ALE_PROBABILITY","BEST_CASE_RISK_EVENT_IMPACT","EXPECTED_RISK_EVENT_IMPACT","WORST_CASE_RISK_EVENT_IMPACT","BEST_CASE_RISK_EVENT_FREQ","EXPECTED_RISK_EVENT_FREQ","WORST_CASE_RISK_EVENT_FREQ","MONTECARLO_IMPACT","MONTECARLO_FREQ","DETERMINISTIC","MONTECARLO_OUTPUT"]},
+  "column_mappings": {"RS_ID": 1,"TST_ID": 2,"RISK_ID": 3,"RISK_RATING_ID": 4,"ANNUALISED_LOSS_EXPECTANCY": 5,"ESTIMATED_ANNUALISED_LOSS": 6,"ALE_PROBABILITY": 7,"BEST_CASE_RISK_EVENT_IMPACT": 8,"EXPECTED_RISK_EVENT_IMPACT": 9,"WORST_CASE_RISK_EVENT_IMPACT": 10,"BEST_CASE_RISK_EVENT_FREQ": 11,"EXPECTED_RISK_EVENT_FREQ": 12,"WORST_CASE_RISK_EVENT_FREQ": 13,"MONTECARLO_IMPACT": 14,"MONTECARLO_FREQ": 15,"DETERMINISTIC": 16,"MONTECARLO_OUTPUT": 17}
  }, 
 
-
  {
-  "target_table": "sandpit.Rule_Set::ruleSet.businessControl",
+  "target_table": "sandpit.Rule_Set::ruleSet.BUSINESS_CONTROL",
   "source_data": {
    "data_type": "CSV",
    "file_name": "sandpit.Rule_Set::19BusinessControl.csv",
@@ -297,12 +294,12 @@
     "delimiter": ","
    }
   },
-  "import_settings": {"import_columns": ["bcId","rsId","bcName","active","type","program","frequency","owner","processId","subProcessId","description","variant","monitor","workflowFlag"]},
-  "column_mappings": {"bcId": 1,"rsId": 2,"bcName": 3,"active": 4,"type": 5,"program": 6,"frequency": 7,"owner": 8,"processId": 9,"subProcessId": 10,"description": 11,"variant": 12,"monitor": 13,"workflowFlag": 14}
+  "import_settings": {"import_columns": ["BC_ID","RS_ID","BC_NAME","ACTIVE","TYPE","PROGRAM","FREQUENCY","OWNER","PROCESS_ID","SUB_PROCESS_ID","DESCRIPTION","VARIANT","MONITOR","WORKFLOW_FLAG"]},
+  "column_mappings": {"BC_ID": 1,"RS_ID": 2,"BCNAME": 3,"ACTIVE": 4,"TYPE": 5,"PROGRAM": 6,"FREQUENCY": 7,"OWNER": 8,"PROCESS_ID": 9,"SUB_PROCESS_ID": 10,"DESCRIPTION": 11,"VARIANT": 12,"MONITOR": 13,"WORKFLOW_FLAG": 14}
  }, 
 
  {
-  "target_table": "sandpit.Rule_Set::ruleSet.testsBusinessControl",
+  "target_table": "sandpit.Rule_Set::ruleSet.TESTS_BUSINESS_CONTROL",
   "source_data": {
    "data_type": "CSV",
    "file_name": "sandpit.Rule_Set::20TestsBusinessControl.csv",
@@ -312,7 +309,22 @@
     "delimiter": ","
    }
   },
-  "import_settings": {"import_columns": ["tstId","bcId"]},
-  "column_mappings": {"tstId": 1,"bcId": 2}
+  "import_settings": {"import_columns": ["TST_ID","BC_ID"]},
+  "column_mappings": {"TST_ID": 1,"BC_ID": 2}
+ },
+ 
+ {
+  "target_table": "sandpit.Rule_Set::ruleSet.UST12",
+  "source_data": {
+   "data_type": "CSV",
+   "file_name": "sandpit.Rule_Set::UST12.csv",
+   "has_header": true,
+   "dialect": "HANA",
+   "type_config": {
+    "delimiter": ","
+   }
+  },
+  "import_settings": {"import_columns": ["MANDT","OBJCT","AUTH","AKTPS","FIELD","VON","BIS"]},
+  "column_mappings": {"MANDT": 1,"OBJCT": 2,"AUTH": 3,"AKTPS": 4,"FIELD": 5,"VON": 6,"BIS": 7}
  }] 
 }

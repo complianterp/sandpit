@@ -1,4 +1,4 @@
-tcode,pgmna,dypno,menue,cinfo,arbgb,ttext
+TCODE,PGMNA,DYPNO,MENUE,CINFO,ARBGB,TTEXT
 F-02,SAPMF05A,100,,2,,Enter G/L Account Posting
 F-41,SAPMF05A,100,,2,,Enter Vendor Credit Memo
 F-42,SAPMF05A,100,,2,,Enter Transfer Posting

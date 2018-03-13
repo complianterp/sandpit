@@ -1,4 +1,4 @@
-riskId,rsId,riskName,riskRating,riskCat,workflowFlag
+RISK_ID,RS_ID,RISK_NAME,RISK_RATING,RISK_CAT,WORKFLOW_FLAG
 RSK000001,RS0001,Fraud,,,0
 RSK000002,RS0001,Loss of funds,,,0
 RSK000003,RS0001,Waste of resources,,,0

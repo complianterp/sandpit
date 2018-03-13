@@ -1,4 +1,4 @@
-processId,processName
+PROCESS_ID,PROCESS_NAME
 PR000001,Procure to Pay (P2P)
 PR000002,Order to Cash (O2C)
 PR000003,Payroll
