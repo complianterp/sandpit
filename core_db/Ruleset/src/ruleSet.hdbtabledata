@@ -183,8 +183,8 @@
     "delimiter": ","
    }
   },
-  "import_settings": {"import_columns": ["ACT_ID","ACTIVE","TCODE","GROUP_NUMBER"]},
-  "column_mappings": {"ACT_ID": 1,"ACTIVE": 2,"TCODE": 3,"GROUP_NUMBER": 4}
+  "import_settings": {"import_columns": ["ACT_ID","ACTIVE","TCODE_VON","TCODE_BIS","GROUP_NUMBER"]},
+  "column_mappings": {"ACT_ID": 1,"ACTIVE": 2,"TCODE_VON": 3,"TCODE_BIS": 4,"GROUP_NUMBER": 5}
  }, 
 
 
@@ -326,5 +326,65 @@
   },
   "import_settings": {"import_columns": ["MANDT","OBJCT","AUTH","AKTPS","FIELD","VON","BIS"]},
   "column_mappings": {"MANDT": 1,"OBJCT": 2,"AUTH": 3,"AKTPS": 4,"FIELD": 5,"VON": 6,"BIS": 7}
- }] 
+ },
+ 
+ {
+  "target_table": "sandpit.Rule_Set::ruleSet.UST10S",
+  "source_data": {
+   "data_type": "CSV",
+   "file_name": "sandpit.Rule_Set::UST10S.csv",
+   "has_header": true,
+   "dialect": "HANA",
+   "type_config": {
+    "delimiter": ","
+   }
+  },
+  "import_settings": {"import_columns": ["MANDT","PROFN","AKTPS","OBJCT","AUTH"]},
+  "column_mappings": {"MANDT": 1,"PROFN": 2,"AKTPS": 3,"OBJCT": 4,"AUTH": 5}
+ },
+ 
+ {
+  "target_table": "sandpit.Rule_Set::ruleSet.UST10C",
+  "source_data": {
+   "data_type": "CSV",
+   "file_name": "sandpit.Rule_Set::UST10C.csv",
+   "has_header": true,
+   "dialect": "HANA",
+   "type_config": {
+    "delimiter": ","
+   }
+  },
+  "import_settings": {"import_columns": ["MANDT","PROFN","AKTPS","SUBPROF"]},
+  "column_mappings": {"MANDT": 1,"PROFN": 2,"AKTPS": 3,"SUBPROF": 4}
+ },
+ 
+ {
+  "target_table": "sandpit.Rule_Set::ruleSet.USR10",
+  "source_data": {
+   "data_type": "CSV",
+   "file_name": "sandpit.Rule_Set::USR10.csv",
+   "has_header": true,
+   "dialect": "HANA",
+   "type_config": {
+    "delimiter": ","
+   }
+  },
+  "import_settings": {"import_columns": ["MANDT","PROFN","AKTPS","MODDA","MODTI","MODBE","DIVIS","TYP","NRAUT"]},
+  "column_mappings": {"MANDT": 1,"PROFN": 2,"AKTPS": 3,"MODDA": 4,"MODTI": 5,"MODBE": 6,"DIVIS": 7,"TYP": 8,"NRAUT": 9}
+ },
+ 
+  {
+  "target_table": "sandpit.Rule_Set::ruleSet.AGR_1016",
+  "source_data": {
+   "data_type": "CSV",
+   "file_name": "sandpit.Rule_Set::AGR_1016.csv",
+   "has_header": true,
+   "dialect": "HANA",
+   "type_config": {
+    "delimiter": ","
+   }
+  },
+  "import_settings": {"import_columns": ["MANDT","AGR_NAME","COUNTER","PROFILE","VARIANT","GENERATED","PSTATE"]},
+  "column_mappings": {"MANDT": 1,"AGR_NAME": 2,"COUNTER": 3,"PROFILE": 4,"VARIANT": 5,"GENERATED": 6,"PSTATE": 7}
+ }]
 }
