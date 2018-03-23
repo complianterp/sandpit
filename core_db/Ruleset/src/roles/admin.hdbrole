@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 {
 	"role":{
 		"name": "admin",
@@ -15,3 +16,22 @@
 		}]
       }
 }
+=======
+{
+	"role":{
+		"name": "admin",
+		"schema_privileges": [{
+		   "privileges": ["SELECT METADATA",
+		    			  "SELECT CDS METADATA",
+		    			  "SELECT",
+		    			  "INSERT",
+		    			  "EXECUTE",
+		    			  "DELETE",
+		    			  "UPDATE",
+		    			  "CREATE TEMPORARY TABLE",
+		    			  "TRIGGER"
+		   ]
+		}]
+      }
+}
+>>>>>>> refs/heads/master
